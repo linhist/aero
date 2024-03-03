@@ -1,0 +1,35 @@
+.caption {
+    @include blk(1em 0, 0);
+    @include ft(h3, semi, $a: cen, $l: l3);
+}
+@for $i from 1 through 6 {
+	.tx-l#{$i} {
+		font-size: val($sizes, h#{$i}, num) !important;
+	}
+	.tx-s#{$i} {
+		font-size: val($sizes, s#{$i}, num) !important;
+	}
+}
+@each $n, $f in $fonts {
+    .tx-#{$n} {
+        font-family: $f;
+    }
+}
+@each $a in (lf, rt, cen) {
+    .tx-#{$a} {
+        text-align: dic($a) !important;
+    }
+}
+.tx-fil {
+    text-align: justify !important;
+}
+@each $w in (lgt, med, semi, blk) {
+    .tx-#{$w} {
+        font-weight: any($weights, $w) !important;
+    } 
+}
+@for $i from 1 through 6 {
+    .lh-#{$i} {
+        line-height: val($sizes, l#{$i}, num) !important;
+    }
+}

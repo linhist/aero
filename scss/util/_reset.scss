@@ -1,0 +1,243 @@
+* {
+	box-sizing: border-box;
+	letter-spacing: 0;
+}
+*, *:invalid {
+	box-shadow: none;
+	outline: none;
+}
+*, html, body {
+    @include ft($f: base);
+}
+html {
+	@include wh(100%);
+	text-rendering: geometricPrecision;
+    -moz-osx-font-smoothing: grayscale;
+	-webkit-overflow-scrolling: touch;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+    @include ft(100%, $l: 1.2);
+    @include mp(0, 0);
+    @include of(hidden, x);
+	@include wh(100%);
+}
+a {
+	background-color: transparent;
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+}
+abbr[title] {
+	border-bottom: none;
+	text-decoration: underline;
+	text-decoration: underline dotted;
+}
+b, strong {
+	font-weight: bold;
+}
+em, i {
+	font-style: italic;
+}
+blockquote {
+	@include blk(0, 0 0 0 1.5em);
+}
+canvas {
+    display: inline-block;
+}
+code, kbd, pre, samp {
+	@include ft(base, $f: mono);
+}
+div, details, header, footer, main, menu, nav, section, figure, figcaption, form, fieldset, legend, progress {
+	@include blk;
+}
+div, img, figure, nav, audio, video {
+	border: none;
+	@include mp(0);
+}
+ol, ul {
+	@include blk(0 0 1rem 1.5rem, 0);
+}
+li, summary {
+	@include blk($d: list-item);
+}
+li {
+	@include mp(0 0 0.25rem, 0);
+}
+ul {
+	list-style: square;
+}
+figure {
+	@include of(hidden);
+	
+	> img, > audio, > video {
+		@include blk;
+		@include wh(auto, null, $mw: 100%);
+        
+        + figcaption {
+            margin-top: 10px;
+        }
+	}
+    > figcaption {
+        @include mp(0, 0 10px);
+        @include ft(90%, n, $a: cen);
+        
+        + img {
+            margin-top: 10px;
+        }
+    }
+}
+header, footer, main {
+	width: 100%;
+}
+h1, h2, h3, h4, h5, h6, p {
+	@include blk(0, 0);
+}
+@for $i from 1 through 6 {
+	h#{$i} {
+		@include ft(h#{$i}, b);
+	}
+}
+hr {
+	box-shadow: none;
+	border: none;
+	@include of(hidden);
+	height: 1px;
+}
+small, sub, sup {
+	@include ft(75%, lgt);
+}
+sub, sup {
+	line-height: 0;
+	@include poz;
+	vertical-align: baseline;
+}
+sub {
+	bottom: -0.25em;
+}
+sup {
+	top: -0.5em;
+}
+template, [hidden] {
+	@include blk(none);
+}
+fieldset {
+	@include bdr;
+	@include mp(0 0 0.5em 0, 0.5em);
+}
+legend, label {
+	@include ft(90%);
+}
+legend {
+	@include mp(0 0 0 1.5em, 0 0.5em);
+	max-width: 90%;
+	white-space: normal;
+}
+label, button, input, select, textarea {
+	@include blk($d: inline-block);
+    @include ft(base, $l: l1);
+}
+label {
+	@include mp(0, 0 0.5em);
+}
+button, select, textarea, [type=button], [type=date], [type=datetime], [type=email], [type=month], [type=number], [type=reset], [type=search], [type=submit], [type=password], [type=time], [type=tel], [type=text], [type=week], .btn, .inp, .sel {
+	background-color: #fff;
+	@include bdr($c: rgba(0,0,0,.25), $r: .3em);
+	@include mp(0, .5em .8em);
+	outline: none;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+}
+button, [type=button], [type=reset], [type=submit], .btn {
+	appearance: button;
+	cursor: pointer;
+}
+button::-moz-focus-inner, input::-moz-focus-inner, select::-moz-focus-inner, textarea::-moz-focus-inner {
+	border: none;
+	padding: 0;
+}
+select {
+	appearance: none;
+	//@include grad-drop-down(colorpl(base, def), colorpl(base, lgt), (right 0.8em top 50%, right 0.5em top 50%, right 1.6em top 50%), (0.3em 0.3em, 0.3em 0.3em, 1px 1.2em));
+	padding-right: 2em;
+}
+textarea {
+	overflow: auto;
+	resize: none;
+	min-height: 2.4em;
+}
+[type=datetime], [type=email], [type=month], [type=search], [type=week] {
+	appearance: textfield;
+}
+[type=password] {
+	-webkit-text-security: circle !important;
+}
+[type=search] {
+	outline-offset: -2px;
+}
+[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {
+	appearance: none;
+}
+[type=file],::-webkit-file-upload-button{
+	appearance: button;
+}
+::placeholder {
+	color: currentColor;
+	opacity: 1;
+}
+input:focus::placeholder {
+	opacity: 0.25;
+}
+.disabled, [disabled], [readonly] {
+	//background-color: $disabled-bg !important;
+	//border-color: $disabled-color !important;
+	//color: $disabled-color !important;
+	cursor: default;
+	pointer-events: none;
+    user-select: text;
+	outline-style: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.invalid, input:invalid, select:invalid, textarea:invalid {
+	//background-color: colorpl(alert, wht) !important;
+	//border-color: colorpl(alert, drk) !important;
+	//color: colorpl(alert, drk) !important;
+}
+.valid {
+	input, select, textarea {
+		//background-color: colorpl(score, wht) !important;
+		//border-color: colorpl(score, drk) !important;
+		//color: colorpl(score, drk) !important;
+	}
+}
+progress {
+	@include mp(0.5rem, 0);
+	vertical-align: baseline;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	caption-side: top;
+    @include mp(0);
+	vertical-align: middle;
+}
+table, thead, tbody, tr {
+	border: none;
+}
+thead, tbody, tr, th, td {
+	border-color: inherit;
+}
+th, td {
+	@include bdr($c: rgba(0,0,0,.25));
+	@include mp(0, 2px);
+	text-align: left;
+}
+thead th {
+	text-align: center;
+}
+section {
+	max-width: 100%;
+	@include of(hidden);
+	@include poz;
+	z-index: 1;
+}

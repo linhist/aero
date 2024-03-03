@@ -1,0 +1,215 @@
+$colors: (
+    drk: #01010a,
+    lgt: #fff,
+    prime: #00c6d4,
+    focus: #0a6482,
+    valid: #1b5117,
+    error: #b21616,
+    alert: #ee911d,
+);
+$dics: (
+    background: bg,
+    border: bd,
+    left: lft lf l,
+    right: rgt rt r,
+    top: tp t,
+    bottom: bot bt b,
+    center: cen c,
+    middle: mid m,
+    italic: ita i,
+    underline: udl ul,
+    overline: odl ol,
+    line-through: lth lt,
+    uppercase: upp uc,
+    lowercase: low lc,
+    capitalize: cap cc,
+    relative: rel,
+    absolute: abs,
+    fixed: fix,
+    static: stt,
+    sticky: stik,
+);
+$fonts: (
+    base: unquote('"Space Grotesk", Arial, Helvetica, sans-serif'),
+    read: serif,
+    mono: monospace, 
+);
+$grids: (
+    gutter: 12px,
+    maxwid: 1560px,
+    cols: 12,
+    s: 4,
+    m: 6,
+);
+$screens: (
+    s: 540px,
+    m: 720px,
+    l: 1120px,
+    x: 1320px,
+    w: 0,
+);
+$sizes: (
+    fill: 100%,
+    h1: 3.5rem,
+    h2: 3rem,
+    h3: 2.5rem,
+    h4: 2.125rem,
+    h5: 1.75rem,
+    h6: 1.25rem,
+    s1: .9rem,
+    s2: .825rem,
+    s3: .79rem,
+    s4: .75rem,
+    s5: .625rem,
+    s6: .5rem,
+    l1: 1.2em,
+    l2: 1.5em,
+    l3: 1.75em,
+    l4: 2em,
+    l5: 2.5em,
+    l6: 3em,
+    g1: 4px,
+    g2: 8px,
+    g3: 16px,
+    g4: 24px,
+    g5: 32px,
+    g6: 64px,
+    p1: 10%,
+    p2: 25%,
+    p3: 50%,
+    p4: 75%,
+    p5: 80%,
+    p6: 90%,
+);
+$weights: (
+    100: thin t,
+    200: extra-light xlgt xl,
+    300: light lgt l,
+    400: normal norm n,
+    500: medium med m,
+    600: semi-bold semi sb s,
+    700: bold b,
+    800: extra-bold xbold xb,
+    900: black blk k,
+);
+$types: (
+    list: arglist arg a lst l,
+    bool: b,
+    calculation: calc c,
+    color: kl k,
+    function: f,
+    map: m,
+    null: u,
+    number: num n,
+    string: str s,
+);
+
+////// Utilities
+@function alt($v...) {
+    @each $a in $v {
+        @if $a != null {
+            @return $a;
+        }
+    }
+    @return null;
+}
+@function any($m, $v) {
+    @if $v == null {
+        @return null;
+    }
+    @each $a, $b in $m {
+        @if $v == $a or has($b, $v) {
+            @return $a;
+        }
+    }
+    @return null;
+}
+@function has($a, $v) {
+    @return $a == $v or index($a, $v) != null;
+}
+@function idx($a, $b) {
+    @if is(map, $a) {
+        $l1: map-keys($a);
+        $l2: map-values($a);
+        @return alt(idx($l1, $b), idx($l2, $b));
+    }
+    @return index($a, $b);
+}
+@function is($t: null, $v: null) {
+    $v: type-of($v);
+    $l: length($t);
+    @if $v == alt($t, 'null') {
+        @return true;
+    }
+    @each $a in $t {
+        @if any($types, $a) == $v {
+            @return true;
+        }
+    }
+    @return false;
+}
+@function get($m, $v) {
+    @if $v == null {
+        @return null;
+    }
+    @if length($v) == 1 {
+        $i: 0;
+        @each $a, $b in $m {
+            $i: $i + 1;
+            @if $a == $v or $i == $v {
+                @return alt($b, $a);
+            }
+        }
+        @return null;
+    }
+    
+    $c: $m;
+    @each $a in $v {
+        $c: get($c, $a);
+        @if $c == null {
+            @return null;
+        }
+    }
+    @return $c;
+}
+
+////// Helpers
+@function dic($v, $a: null) {
+    @return alt(any($dics, $v), $a);
+}
+@function val($m, $v, $t: null) {
+    @if $v == null {
+        @return null;
+    }
+    @if $t != null and is($t, $v) {
+        @return $v;
+    }
+    @return alt(get($m, $v), null);
+}
+@function vany($m, $v, $t: null) {
+    @if $v == null {
+        @return null;
+    }
+    @if $t != null and is($t, $v) {
+        @return $v;
+    }
+    @return alt(any($m, $v), null);
+}
+@function kolor($c: null, $t: 0, $o: 1) {
+    @if $c == null {
+        @return #000;
+    }
+    @if is(color, $c) {
+        @return $c;
+    }
+    @if is(list, $c) {
+        @return get($colors, $c);
+    }
+    @return get($colors, ($c, $t));
+}
+@function pct($a, $b) {
+    @if $a == 0 or $b == 0 {
+        @return 0%;
+    }
+    @return percentage(calc(round(($a/ $b) * 100) / 10000));
+}

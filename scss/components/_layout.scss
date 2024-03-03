@@ -1,0 +1,96 @@
+.box {
+    clear: both;
+    @include blk(0, 0, $f: none);
+}
+.box::after, .clr, .cls, .clx, .clz, .splt {
+    clear: both;
+    @include blk(0, 0, $d: table);
+    @include wh(100%, 0);
+}
+.cls {
+    height: 3px;
+}
+.clx {
+    height: 10px;
+}
+.clz {
+    height: 15px;
+}
+.splt {
+    @include kl(base, blk, bg);
+    height: 1px;
+}
+
+@for $i from 0 through 6 {
+    @if $i > 0 {
+        .cl-#{$i} {
+            @extend .clr;
+            height: val($sizes, g#{$i}, num);
+        }
+    }
+    
+    $s: if($i == 0, 0, val($sizes, g#{$i}, num));
+    .mb-#{$i}, .m-#{$i}, .mp-#{$i} {
+        margin-bottom: $s !important;
+    }
+    .ml-#{$i}, .m-#{$i}, .mp-#{$i} {
+        margin-left: $s !important;
+    }
+    .mr-#{$i}, .m-#{$i}, .mp-#{$i} {
+        margin-right: $s !important;
+    }
+    .mt-#{$i}, .m-#{$i}, .mp-#{$i} {
+        margin-top: $s !important;
+    }
+    .pb-#{$i}, .p-#{$i}, .mp-#{$i} {
+        padding-bottom: $s !important;
+    }
+    .pl-#{$i}, .p-#{$i}, .mp-#{$i} {
+        padding-left: $s !important;
+    }
+    .pr-#{$i}, .p-#{$i}, .mp-#{$i} {
+        padding-right: $s !important;
+    }
+    .pt-#{$i}, .p-#{$i}, .mp-#{$i} {
+        padding-top: $s !important;
+    }
+}
+
+$gut: val($grids, gutter, num);
+$col: val($grids, cols, num);
+.wraper {
+    @include blk(0 auto, 0 $gut);
+    width: 100%;
+
+    @each $s, $w in $screens {
+        @if val($grids, $s, num) == null and $w != 0 {
+            @include mda-ov($s) {
+                max-width: calc(round(($w - 24) / $col) * $col);
+            }
+        }
+    }
+}
+
+.row {
+    @extend .box;
+    @include blk(0, 0);
+
+    .col {
+        @include blk(0, 0 $gut, $f: l);
+        width: auto;
+    }
+}
+
+$scr: 0;
+@each $s, $w in $screens {
+    $c: alt(val($grids, $s, num), $col);
+    @include mda-ov($scr) {
+        @for $i from 1 through $col {
+            .col.#{$s}#{$i} {
+                width: pct(100, $col) * $i;
+            }
+        }
+    }
+    $scr: $s;
+}
+

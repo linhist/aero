@@ -1,0 +1,113 @@
+@mixin kl($c: base, $t: null, $s: null, $o: 1) {
+    $s: dic($s);
+    $s:  + color;
+    #{if($s == null, color, #{$s}-color)}: kolor($c, $t, $o);
+}
+@mixin blk($m: null, $p: null, $f: null, $d: block) {
+    display: dic($d);
+    float: dic($f);
+    @include mp($m, $p);
+}
+@mixin bdr($s: 1px, $c: null, $t: solid, $r: null, $d: null) {
+    $c: kolor($c);
+    @if $d == null {
+        border: $t $s $c;
+    }
+    @else {
+        @each $a in $d {
+            $b: dic($a);
+            @if ($b != null) {
+                border-#{$b}: $t $s $c;
+            }
+        }
+    }
+    border-radius: $r;
+}
+@mixin ft($s: null, $w: null, $t: null, $a: null, $l: null, $f: null) {
+    font-family: val($fonts, $f);
+    font-size: val($sizes, $s, num);
+    font-weight: vany($weights, $w, num);
+
+    $t: dic($t);
+    @if $t == italic {
+        font-style: $t;
+    }
+    line-height: val($sizes, $l, num);
+
+    @if has((underline, overline, unquote('line-though')), $t) {
+        text-decoration: $t;
+    }
+    @if has((uppercase, lowercase, none), $t) {
+        text-transform: $t;
+    }
+    text-align: dic($a);
+}
+@mixin lh($l, $h: null, $w: null) {
+    line-height: val($sizes, $l, num);
+    height: $h;
+    width: $w;
+}
+@mixin mp($m, $p: $m) {
+    margin: if(is(lst, $m), $m, val($sizes, $m, num));
+    padding: if(is(lst, $p), $p, val($sizes, $p, num));
+}
+@mixin of($v, $d: null) {
+    @if $d == null {
+        overflow: $v;
+    }
+    @else {
+        overflow-#{$d}: $v;
+    }
+}
+@mixin poz($p: relative, $t: null, $l: null, $b: null, $r: null, $z: null) {
+    position: dic($p);
+    top: $t;
+    left: $l;
+    bottom: $b;
+    right: $r;
+    z-index: $z;
+}
+@mixin wh($w, $h: $w, $mw: null, $mh: null) {
+    height: $h;
+    width: $w;
+    max-width: $mw;
+    max-height: $mh;
+}
+@mixin b_a($b: block, $a: block, $c: '') {
+    $c: #{$c} + if($c != '', ',', '') + '&::before' + '&::after';
+
+}
+@mixin mda($s1, $s2) {
+    $s1: val($screens, $s1, num);
+    $s2: val($screens, $s2, num);
+
+    $mda1: if($s1 != null and $s1 > 0, '(min-width: #{$s1})', '');
+    $mda2: if($s2 != null and $s2 > 0, '(max-width: #{$s2 - 0.001})', '');
+    $mda: $mda1 + if($mda1 == '' or $mda2 == '', '', ' and ') + $mda2;
+
+    @if $mda1 == '' and $mda2 == '' {
+        @content;
+    }
+    @else {
+        @media only screen and #{unquote($mda)} {
+            @content;
+        }
+    }
+}
+@mixin mda-ol($s) {
+    $i: idx($screens, $s);
+    
+    @include mda(val($screens, $i), val($screens, i + 1)) {
+        @content;
+    }
+}
+@mixin mda-ov($s) {
+    @include mda($s, 0) {
+        @content;
+    }
+}
+@mixin mda-ud($s) {
+    @include mda(0, $s) {
+        @content;
+    }
+}
