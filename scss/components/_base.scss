@@ -1,0 +1,81 @@
+.drawer {
+    @include kl(dark lt, bg);
+    border-radius: .25em;
+    @include nlb;
+    padding-right: 2em;
+    @include poz;
+
+    &::before, &::after {
+        content: '';
+        @include bx;
+        @include abs(50%, $z: 1);
+        transform: translate(-50%, -50%);
+    }
+    &::before {
+        @include kl(rgba(#fff, .25), bg);
+        right: -1em;
+        @include wh(2em, 100%);
+    }
+    &::after {
+        @include bd(.5em, #fff, $d: t);
+        @include bd(.3em, transparent, $d: l);
+        @include bd(.3em, transparent, $d: r);
+        right: .5em;
+        @include wh(0);
+    }
+    a, button, .btn, [type=button], [type=reset], [type=submit] {
+        background: none;
+    }
+    .lst {
+        @include kl(#fff, bg);
+        @include bd($c: currentColor, $r: .25em);
+        @include abs(100%, 0);
+        min-width: 100%;
+        transform: scaleY(0);
+        transform-origin: top left;
+        transition: all ease .2s;
+
+        a, button, .btn, [type=button], [type=reset], [type=submit] {
+            @include ft(90%, $t: none);
+        }
+        li:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+    }
+    &:hover {
+        z-index: 3;
+
+        &::before {
+            @include kl(rgba(#fff, .1), bg);
+        }
+        .lst {
+            transform: scaleY(1);
+        }
+    }
+    &.lgt {
+        @include kl(#fff, bg);
+        @include bd($c: curentColor);
+
+        &::before {
+            @include bd($c: curentColor, $d: l);
+        }
+        &::after {
+            @include kl(currentColor, border-top);
+            @include kl(currentColor, border-bottom);
+        }
+        &:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+    }
+    &.rev {
+        &::after {
+            border-top: none;
+            @include bd(.5em, #fff, $d: b);
+        }
+        .lst {
+            top: unset;
+            bottom: 100%;
+            transform-origin: bottom left;
+        }
+    }
+}

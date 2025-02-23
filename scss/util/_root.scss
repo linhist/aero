@@ -1,0 +1,37 @@
+$variablize: true;
+$overriden: true;
+
+:root {
+    /*Base color palettes*/
+    $colors: get($palettes, colors);
+    $tones: get($palettes, tones);
+    @each $c, $k in $colors {
+        @each $t, $v in $tones {
+            #{jx('-', --kl, $c, $t)}: pal($k, $t);
+        }
+    }
+
+    /*Base font typography*/
+    $fonts: get($typographs, fonts);
+    @each $f, $v in $fonts {
+        --ft-#{$f}: #{$v};
+    }
+
+    $specs: get($typographs, specs);
+    @each $s, $v in $specs {
+        $sz: get($v, size);
+        $cnt: get($v, range);
+        $stp: get($v, step);
+
+        @if $s == _ {
+            --ln-hei-p: #{get($v, lhei)};
+            --ft-sz-p: #{get($v, size)};
+        }
+        @else if is(num, $cnt) and is(num, $stp) {
+            --ln-hei-#{$s}: #{get($v, lhei)};
+            @for $i from 0 to $cnt {
+                --ft-sz-#{$s}#{$i + 1}: #{$sz + if($stp > 0, ($cnt - $i - 1) * $stp, $i * $stp)};
+            }
+        }
+    }
+}

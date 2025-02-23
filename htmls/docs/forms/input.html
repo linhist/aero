@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>aero Site Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="../../../styles/site.css" rel="stylesheet">
+	<link href="../../../styles/docs.css" rel="stylesheet">
+</head>
+<body class="has-sb show-sb">
+    <div class="sidebar">
+        <div class="brand"><a href="../../index.html"><b style="color: #fff;">aero</b></a><small>Documentations</small></div>
+        <ul class="lst">
+            <li>Common</li>
+            <li><a href="../colors.html">Color palettes</a></li>
+            <li><a href="../grids.html">Grid system</a></li>
+            <li><a href="../typo.html">Typography</a></li>
+            <li><b>Form Elements</b></li>
+            <li><a href="button.html">Button</a></li>
+            <li><a class="active" href="input.html">Text input</a></li>
+            <li><a href="number.html">Number input</a></li>
+            <li><a href="select.html">Selection</a></li>
+            <li><a href="check.html">State switch</a></li>
+            <li><a href="datetime.html">Datetime picker</a></li>
+            <li><a href="others.html">Others</a></li>
+        </ul>
+    </div>
+    <main class="pg-cover">
+        <div class="cap1">Form elements</div>
+        <form class="box">
+            <fieldset class="rd2 pdz">
+                <legend>Origin form elements</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Text input"/>
+                        <pre>&lt;input type=&quot;text&quot; placeholder=&quot;Text input&quot; /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="email" placeholder="Email input"/>
+                        <pre>&lt;input type="email" placeholder="Email input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="search" placeholder="Search input"/>
+                        <pre>&lt;input type="search" placeholder="Search input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="password" placeholder="Password input"/>
+                        <pre>&lt;input type="password" placeholder="Password input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="tel" placeholder="Tel input"/>
+                        <pre>&lt;input type="tel" placeholder="Tel input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt" type="text" placeholder="Light input"/>
+                        <pre>&lt;input class="lgt" type=&quot;text&quot; placeholder=&quot;Text input&quot; /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi" type="text" placeholder="Semi input"/>
+                        <pre>&lt;input class="semi" type=&quot;text&quot; placeholder=&quot;Text input&quot; /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <textarea placeholder="Textarea input"></textarea>
+                        <pre>&lt;textarea placeholder="Textarea input"&gt;&lt;/textarea /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <textarea class="lgt" placeholder="Light textarea"></textarea>
+                        <pre>&lt;textarea class="lgt" placeholder="Light textarea"&gt;&lt;/textarea /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <textarea class="semi" placeholder="Semi textarea"></textarea>
+                        <pre>&lt;textarea class="semi" placeholder="Semi textarea"&gt;&lt;/textarea /&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Elements by state</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Valid input" required value="Valid input"/>
+                        <pre>&lt;input type="text" placeholder="Valid input" required value="Valid input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Invalid input" required />
+                        <pre>&lt;input type="text" placeholder="Invalid input" required /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="text" value="Disabled input" disabled />
+                        <pre>&lt;input type="text" placeholder="Disabled input" disabled /&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Elements color palettes</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input class="prime" type="text" placeholder="Prime input"/>
+                        <pre>&lt;input class="prime" type="text" placeholder="Prime input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alter" type="text" placeholder="Alter input"/>
+                        <pre>&lt;input class="alter" type="text" placeholder="Alter input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="valid" type="text" placeholder="Valid input"/>
+                        <pre>&lt;input class="valid" type="text" placeholder="Valid input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="error" type="text" placeholder="Error input"/>
+                        <pre>&lt;input class="error" type="text" placeholder="Error input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alert" type="text" placeholder="Alert input"/>
+                        <pre>&lt;input class="alert" type="text" placeholder="Alert input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="dark" type="text" placeholder="Dark input"/>
+                        <pre>&lt;input class="dark" type="text" placeholder="Dark input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt prime" type="text" placeholder="Prime input"/>
+                        <pre>&lt;input class="lgt prime" type="text" placeholder="Prime input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt alter" type="text" placeholder="Alter input"/>
+                        <pre>&lt;input class="lgt alter" type="text" placeholder="Alter input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt valid" type="text" placeholder="Valid input"/>
+                        <pre>&lt;input class="lgt valid" type="text" placeholder="Valid input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt error" type="text" placeholder="Error input"/>
+                        <pre>&lt;input class="lgt error" type="text" placeholder="Error input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt alert" type="text" placeholder="Alert input"/>
+                        <pre>&lt;input class="lgt alert" type="text" placeholder="Alert input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="lgt dark" type="text" placeholder="Dark input"/>
+                        <pre>&lt;input class="lgt dark" type="text" placeholder="Dark input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi prime" type="text" placeholder="Prime input"/>
+                        <pre>&lt;input class="semi prime" type="text" placeholder="Prime input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi alter" type="text" placeholder="Alter input"/>
+                        <pre>&lt;input class="semi alter" type="text" placeholder="Alter input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi valid" type="text" placeholder="Valid input"/>
+                        <pre>&lt;input class="semi valid" type="text" placeholder="Valid input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi error" type="text" placeholder="Error input"/>
+                        <pre>&lt;input class="semi error" type="text" placeholder="Error input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi alert" type="text" placeholder="Alert input"/>
+                        <pre>&lt;input class="semi alert" type="text" placeholder="Alert input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="semi dark" type="text" placeholder="Dark input"/>
+                        <pre>&lt;input class="semi dark" type="text" placeholder="Dark input"/&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Elements with sizes</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input class="fm-s" type="text" placeholder="Small Input"/>
+                        <pre>&lt;input class="fm-s" type="text" placeholder="Small Input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-m" type="text" placeholder="Medium Input"/>
+                        <pre>&lt;input class="fm-m" type="text" placeholder="Medium Input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-l" type="text" placeholder="Large Input"/>
+                        <pre>&lt;input class="fm-l" type="text" placeholder="Large Input"/&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Specified elements</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <div class="fld">
+                            <div class="fld-txt">
+                                <input id="inp1" type="text" value=""/>
+                                <label for="inp1">Text field only</label>
+                            </div>
+                            <span class="tip1">This is a help text</span>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld">
+                            <div class="fld-txt">
+                                <span><i class="ico">i</i></span>
+                                <input id="inp2" type="text" value=""/>
+                                <label for="inp2">Text field with icon</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld">
+                            <div class="fld-txt">
+                                <input id="inp3" type="text" value=""/>
+                                <span><b>$</b></span>
+                                <label id="inp3">Text field with info text</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld">
+                            <div class="fld-txt">
+                                <input id="inp3" type="text" value=""/>
+                                <button>View</button>
+                                <label id="inp3">Text field with button</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld-grp">
+                            <span><i class="ico">i</i></span>
+                            <div class="fld-txt">
+                                <input id="inp2" type="text" value=""/>
+                                <label for="inp2">Icon field left</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld-grp">
+                            <div class="fld-txt">
+                                <input id="inp3" type="text" value=""/>
+                                <label id="inp3">Icon field right</label>
+                            </div>
+                            <span>~50%</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Specified elements</legend>
+                <div class="row">
+                    <div class="col x12 py2">
+                        <div class="fld">
+                            <div class="inp-grp">
+                                <input type="text" placeholder="Input 1" style="width: 50%;"/>
+                                <input type="text" placeholder="Input 2" style="width: 20%;"/>
+                                <input type="text" placeholder="Input 3" style="width: 20%;"/>
+                                <button style="width: 10%;">Button</button>
+                            </div>
+                            <span class="tip1">This is a inputs group</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../../../scripts/site.js"></script>
+</body>
+</html>

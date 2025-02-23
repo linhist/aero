@@ -1,0 +1,86 @@
+$gutter: get($layouts, (gutters, size));
+$gstep: get($layouts, (gutters, step));
+$gcnt: get($layouts, (gutters, range));
+
+.box {
+    @extend %boxy;
+    clear: both;
+}
+$acls: '.box::after, .cl0,';
+@for $i from 0 to $gcnt {
+    $acls: jx(', ', $acls, '.cl#{$i + 1}');
+}
+#{$acls}, .splt {
+    @extend %cle;
+}
+.splt {
+    @include kl(currentColor, bg);
+    height: 1px;
+}
+
+@each $d in b, t, l, r {
+    .m#{$d}0, .m#{if($d == b or $d == t, y, x)}0, .mg0, .mp0 {
+        @include imp(margin-#{dic($d)}, 0, true);
+    }
+    .p#{$d}0, .p#{if($d == b or $d == t, y, x)}0, .pd0, .mp0 {
+        @include imp(padding-#{dic($d)}, 0, true);
+    }
+}
+@for $i from 0 to $gcnt {
+    $gs: $gutter + $i * $gstep;
+    .cl#{$i + 1} {
+        height: $gs;
+    }
+    @each $d in b, t, l, r {
+        .m#{$d}#{$i + 1}, .m#{if($d == b or $d == t, y, x)}#{$i + 1}, .mg#{$i + 1}, .mp#{$i + 1} {
+            @include imp(margin-#{dic($d)}, $gs, true);
+        }
+        .p#{$d}#{$i + 1}, .p#{if($d == b or $d == t, y, x)}#{$i + 1}, .pd#{$i + 1}, .mp#{$i + 1} {
+            @include imp(padding-#{dic($d)}, $gs, true);
+        }
+    }
+    .rd#{$i + 1} {
+        border-radius: $gs;
+    }
+}
+
+$ss: 0;
+@each $s, $v in $grids {
+    @include mda-ov($ss) {
+        $gt: get($v, gutt);
+        @if not mt($gt) {
+            @each $d in b, t, l, r {
+                .m#{$d}z, .m#{if($d == b or $d == t, y, x)}z, .mgz, .mpz {
+                    @include imp(margin-#{dic($d)}, $gt, true);
+                }
+                .p#{$d}z, .p#{if($d == b or $d == t, y, x)}z, .pdz, .mpz {
+                    @include imp(padding-#{dic($d)}, $gt, true);
+                }
+            }
+            .rdz {
+                border-radius: $gt;
+            }
+        }
+    }
+    $ss: $s;
+}
+
+$ss: '';
+@for $i from 0 to 5 {
+    $v: $i * 25;
+    $p: pct($v, 1);
+    @each $s in (wd, mw, xw, ht, mh, xh, rd) {
+        .#{$s}#{$v} {
+            #{dic($s)}: $p;
+        }
+    }
+    @each $s in (t, b, l, r) {
+        $ss: jx(', ', $ss, '.pz-#{$s}#{$v}');
+        .pz-#{$s}#{$v} {
+            #{dic($s)}: $p;
+        }
+    }
+}
+#{$ss} {
+    @include abs;
+}

@@ -1,0 +1,105 @@
+$gutter: get($layouts, (gutters, size));
+$grids: get($layouts, grids);
+
+.fluid {
+    @include bx(0 auto, 0 $gutter);
+    width: 100%;
+
+    @include mda-ov {
+        padding: 0;
+        max-width: 90%;
+    }
+}
+.wrap {
+    @include bx(0 auto, 0);
+}
+.lst {
+    list-style: none;
+    @include mp(0);
+
+    &, & > li {
+        @extend %clfx;
+    }
+    & > a {
+        @include bx;
+    }
+    &.hl li {
+        float: left;
+    }
+    &.hr li {
+        float: right;
+    }
+    
+    @for $i from 2 to 6 {
+        &.x#{$i} li {
+            width: pct(100, $i);
+        }
+    }
+}
+.row {
+    @extend %clfx;
+
+    .col {
+        @include bx(0, 0, lft);
+        width: auto;
+    }
+}
+.lst, .row {
+    &.flex {
+        display: flex;
+    }
+}
+.lst.flex {
+    flex-flow: column wrap;
+}
+.lst.hl, .row {
+    &.flex {
+        flex-flow: row wrap;
+    }
+}
+.lst.hr.flex {
+    flex-flow: row-reverse wrap;
+}
+.lst.flex li, .row.flex .col {
+    float: none;
+    flex: 0 0 auto;
+}
+
+$ss: 0;
+$col: 0;
+@each $s, $v in $grids {
+    $col: alt(get($v, cols), $col);
+    @include mda-ov($ss) {
+        $wd: get($v, size);
+        $gt: get($v, gutt);
+        @if not mt($wd) {
+            $wd: $wd - ($col + 1) * $gt;
+
+            .wrap {
+                max-width: $wd - ($wd % $col) + ($col - 1) * $gt;
+            }
+        }
+        .row {
+            @include mp(0 (-$gt), 0);
+
+            .col {
+                padding: 0 $gt;
+
+                @for $i from 1 through $col {
+                    &.#{$s}#{$i} {
+                        width: pct(100 * $i, $col);
+                    }
+                }
+                @for $i from 1 through 12 {
+                    &.#{jx('-', x#{$i}, if($ss == 0, '', $s))} {
+                        width: pct(100 * $i, 12);
+                    }
+                    &.#{jx('-', nx#{$i}, if($ss == 0, '', $s))} {
+                        margin-left: pct(100 * $i, 12);
+                    }
+                }
+            }
+        }
+    }
+    $ss: $s;
+}

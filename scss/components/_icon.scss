@@ -1,0 +1,53 @@
+.ico {
+    @include nlb;
+    @include poz;
+    vertical-align: middle;
+    min-width: 1em;
+    min-height: 1em;
+    text-align: center;
+}
+.ico {
+    &.menu {
+        @extend %has-bf0;
+
+        &::before {
+            @include kl(currentColor, bg);
+            border-radius: .05em;
+            box-shadow: 0 -.35em 0 currentColor, 0 .35em 0 currentColor;
+            @include wh(1em, .1em);
+        }
+    }
+}
+.sb-toggle {
+    .ico {
+        @extend %has-ab0;
+        transform-origin: top left;
+
+        &::after, &::before {
+            @include kl(currentColor, bg);
+            border-radius: .05em;
+            @include wh(1em, .1em);
+            transition: all ease .2s;
+        }
+        &::after {
+            display: none;
+        }
+        &::before {
+            box-shadow: 0 -.35em 0 currentColor, 0 .35em 0 currentColor;
+        }
+    }
+    &.active .ico {
+        &::after, &::before {
+            margin-top: -.05em;
+            left: 0;
+        }
+        &::after {
+            @include bx;
+            transform: rotate(45deg);
+        }
+        &::before {
+            box-shadow: none;
+            transform: rotate(-45deg);
+        }
+    }
+}

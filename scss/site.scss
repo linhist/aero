@@ -1,6 +1,18 @@
 @import 'util/global';
+@import 'util/root';
 @import 'util/mixin';
 @import 'util/reset';
 
-@import 'components/typo';
-@import 'components/layout';
+@import 'layouts/typo';
+@import 'layouts/form';
+@import 'layouts/grid';
+@import 'layouts/space';
+@import 'layouts/color';
+
+@import 'components/base';
+@import 'components/form';
+@import 'components/deco';
+@import 'components/icon';
+
+@import 'modules/page';
+@import 'modules/nav';

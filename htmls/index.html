@@ -9,111 +9,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
 	<link href="../styles/site.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-
-    </header>
-    <main>
-        <section>
-            <div class="wraper">
-                <div class="caption">Typography</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tag</th>
-                            <th>Sample</th>
-                            <th>Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th><h1>H1</h1></th>
-                            <td><h1>This is Heading 1 style.</h1></td>
-                            <td><pre>&lt;h1&gt;This is Heading 1 style.&lt;/h1&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th><h2>H2</h2></th>
-                            <td><h2>This is Heading 2 style.</h2></td>
-                            <td><pre>&lt;h2&gt;This is Heading 2 style.&lt;/h2&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th><h3>H3</h3></th>
-                            <td><h3>This is Heading 3 style.</h3></td>
-                            <td><pre>&lt;h3&gt;This is Heading 3 style.&lt;/h3&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th><h4>H4</h4></th>
-                            <td><h4>This is Heading 4 style.</h4></td>
-                            <td><pre>&lt;h4&gt;This is Heading 4 style.&lt;/h4&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th><h5>H5</h5></th>
-                            <td><h5>This is Heading 5 style.</h5></td>
-                            <td><pre>&lt;h5&gt;This is Heading 5 style.&lt;/h5&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th><h6>H6</h6></th>
-                            <td><h6>This is Heading 6 style.</h6></td>
-                            <td><pre>&lt;h6&gt;This is Heading 6 style.&lt;/h6&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th>P</th>
-                            <td><p>This is Paragraph style.</p></td>
-                            <td><pre>&lt;p&gt;This is Paragraph style.&lt;/p&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th>SMALL</th>
-                            <td><small>This is Small style.</small></td>
-                            <td><pre>&lt;small&gt;This is Small style.&lt;/small&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th>BLOCKQUOTE</th>
-                            <td><blockquote>This is Blockquote style.</blockquote></td>
-                            <td><pre>&lt;blockquote&gt;This is Blockquote style.&lt;/blockquote&gt;</pre></td>
-                        </tr>
-                        <tr>
-                            <th>PRE</th>
-                            <td><pre>This is Precode style.</pre></td>
-                            <td><pre>&lt;pre&gt;This is pre code style.&lt;/pre&gt;</pre></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        <div class="cl-5"></div>
-        <section>
-            <div class="wraper">
-                <form>
-                    <fieldset>
-                        <legend>This is a legend of fieldset inside a form</legend>
-                        <br>
-                        <input type="text" value="Text input" />
-                        <input type="email" value="Email input" />
-                        <input type="search" value="Search input" />
-                        <input type="password" value="Password input" />
-                        <input type="tel" value="Tel input" />
-                        <input type="number" value="Number input" />
-                        <input type="date" value="Date input" />
-                        <input type="time" value="Time input" />
-                        <input type="datetime" value="Datetime input" />
-                        <input type="month" value="Month input" />
-                        <input type="week" value="Week input" />
-                        <input type="color" value="Color input" />
-                        <input type="checkbox" value="Checkbox input" />
-                        <input type="radio" value="Radio input" />
-                        <input type="button" value="Button input" />
-                        <input type="file" value="File input" />
-                        <input type="image" value="Image input" />
-                        <input type="range" value="Range input" />
-                        <button>This is a button</button>
-                    </fieldset>
-                </form>
-
-            </div>
-        </section>
+<body class="has-mn has-tb has-sb">
+    <div class="toolbar">
+        <ul class="lst">
+            <li><a href="#"><i class="ico">i</i></a></li>
+            <li><a href="#"><i class="ico">i</i></a></li>
+            <li><a href="#"><i class="ico">i</i></a></li>
+            <li><a href="#"><i class="ico">i</i></a></li>
+            <li><a href="#"><i class="ico">i</i></a></li>
+            <li><a href="#"><i class="ico">i</i></a></li>
+        </ul>
+    </div>
+    <div class="sidebar">
+        <ul class="lst">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Signup</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Table</a></li>
+            <li><a href="#">Chart</a></li>
+            <li><a href="#">Form</a></li>
+        </ul>
+        <div class="side-dock">
+            <a href="docs/colors.html">Documentations</a>
+        </div>
+    </div>
+    <div class="menubar">
+        <button class="lnk sb-toggle"><i class="ico tx-h6"></i></button>
+        <div class="brand">
+            <a class="logo" href="index.html">
+                <svg style="height: 28px;margin: 16px;" viewBox="0 0 464 144" fill="#1976D2" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M324 70C324 56.1946 327.996 43.3226 334.896 32.4779C326.563 29.6372 317.326 29.153 308.184 31.6026C302.108 33.2308 296.664 35.9902 292 39.5888V132C292 138.627 286.627 144 280 144C273.373 144 268 138.627 268 132V16C268 9.37258 273.373 4 280 4C285.293 4 289.786 7.42734 291.381 12.1839C294.755 10.6706 298.292 9.40667 301.973 8.42039C319.503 3.72309 337.263 6.11485 352.209 13.8384C363.872 5.14546 378.335 0 394 0C432.66 0 464 31.3401 464 70C464 108.66 432.66 140 394 140C355.34 140 324 108.66 324 70ZM348 70C348 61.1498 350.499 52.8834 354.831 45.8681C359.273 50.9768 362.652 57.1496 364.523 64.1295C366.238 70.5311 372.818 74.3301 379.22 72.6148C385.621 70.8995 389.42 64.3195 387.705 57.9179C384.771 46.9692 379.398 37.3257 372.327 29.4153C378.785 25.9595 386.164 24 394 24C419.405 24 440 44.5949 440 70C440 95.4051 419.405 116 394 116C368.595 116 348 95.4051 348 70ZM73.9607 24.3769C88.4952 25.5726 102.223 33.6436 110.067 47.2295C113.38 52.969 120.719 54.9355 126.459 51.6218C132.198 48.3081 134.165 40.969 130.851 35.2295C111.521 1.74899 68.71 -9.72227 35.2295 9.6077C1.74899 28.9377 -9.72227 71.749 9.6077 105.229C28.9377 138.71 71.749 150.181 105.229 130.851C105.867 130.483 106.459 130.065 107.001 129.605L110.61 135.855C113.923 141.594 121.262 143.561 127.002 140.247C132.741 136.933 134.708 129.594 131.394 123.855L73.9607 24.3769ZM47.2295 30.3923C25.228 43.0949 17.6898 71.228 30.3923 93.2295C43.0949 115.231 71.228 122.769 93.2295 110.067C93.8674 109.698 94.5251 109.395 95.1948 109.155L49.1229 29.3565C48.4871 29.6855 47.8558 30.0307 47.2295 30.3923ZM223.229 110.067C204.803 120.705 182.075 117.146 167.714 102.784L254.995 52.3923C255.097 52.3335 255.197 52.2735 255.297 52.2123C255.69 52.0384 256.078 51.8417 256.459 51.6218C262.198 48.3081 264.165 40.969 260.851 35.2295C241.521 1.74899 198.71 -9.72227 165.229 9.6077C131.749 28.9377 120.278 71.749 139.608 105.229C158.938 138.71 201.749 150.181 235.229 130.851C240.969 127.538 242.935 120.198 239.622 114.459C236.308 108.719 228.969 106.753 223.229 110.067ZM177.229 30.3923C158.844 41.0074 150.558 62.3984 155.744 81.9819L232.65 37.5803C218.283 23.2971 195.615 19.7772 177.229 30.3923Z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <main class="pg-cover">
+        <div class="pg-cap">Dashboard</div>
     </main>
-    <footer>
-
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../scripts/site.js"></script>
 </body>
 </html>

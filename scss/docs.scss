@@ -1,0 +1,62 @@
+@import 'util/global';
+@import 'util/mixin';
+
+code, kbd, pre, samp {
+    @include kl(dark bl, bg);
+    @include kl(valid lt);
+    @include bx(1em 0 0, .5em);
+	@include ft(80%);
+    height: 5em;
+    overflow-y: auto;
+    white-space: wrap;
+}
+.brand {
+    @include bd($c: alter, $d: b);
+    @include ft(h 3);
+    @include mp(0 0 1em 0, .5em);
+
+    b, small {
+        display: block;
+    }
+    small {
+        margin-top: .5em;
+        @include ft($w: lt);
+    }
+}
+.palettes {
+    .lst li div {
+        @include lh(80px, 80px, 80px);
+        text-align: center;
+    }
+}
+.gridview {
+    .col > div, li > div {
+        background: #eeee;
+        line-height: 40px;
+        text-align: center;
+    }
+}
+.sidebar {
+    .lst a {
+        @extend %has-bf0;
+        padding: .5em;
+        padding-left: 1em;
+
+        &:hover::before {
+            left: 0;
+            @include bd(.3em, currentColor, $d: l);
+            @include bd(.2em, transparent, $d: t);
+            @include bd(.2em, transparent, $d: b);
+        }
+        &.active {
+            @include kl(prime wh);
+
+            &::before {
+                left: 0;
+                @include bd(.3em, currentColor, $d: l);
+                @include bd(.2em, transparent, $d: t);
+                @include bd(.2em, transparent, $d: b);
+            }
+        }
+    }
+}

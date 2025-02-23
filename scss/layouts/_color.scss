@@ -1,0 +1,144 @@
+$cbase: get($palettes, _);
+body {
+	@include kl(get($cbase, text));
+}
+a, .lnk {
+	@include kl(get($cbase, link));
+	transition: all ease .2s;
+	
+	&:hover {
+		@include kl(get($cbase, hover));
+	}
+}
+button.lnk {
+	@include kl(transparent, bg);
+	border: none;
+}
+tr, th, td {
+	@include kl(currentColor, bdr);
+}
+.bg0 {
+	background: none !important;
+}
+.bdr0 {
+	border: none !important;
+}
+
+/*Start colors */
+$kolors: get($palettes, colors);
+$ktones: get($palettes, tones);
+@each $c, $k in $kolors {
+	@each $t, $v in $ktones {
+		.#{jx('-', bg, $c, if($t == _, null, $t))} {
+			@include kl(($c, $t), bg);
+		}
+		.#{jx('-', bd, $c, if($t == _, null, $t))} {
+			@include kl(($c, $t), bdr);
+		}
+		.#{jx('-', tx, $c, if($t == _, null, $t))} {
+			@include kl(($c, $t));
+		}
+	}
+	.#{$c}-st, .#{$c}-hv {
+		@include kl(($c, lt), bg);
+		@include kl(($c, dk), bdr);
+		@include kl(($c, dk));
+	}
+	.#{$c}-rv, .#{$c}-hv:hover {
+		@include kl(($c, dk), bg);
+		@include kl(($c, dk), bdr);
+		@include kl(($c, wh));
+	}
+	button, .btn, [type=button],  [type=submit], [type=reset] {
+		&.#{$c}, .#{$c} & {
+			@include kl($c, bg);
+			@include kl($c, bdr);
+
+			&:active, &:focus, &:hover {
+				@include kl(($c, dk), bg);
+				@include kl(($c, dk), bdr);
+			}
+		}
+		&.#{$c}.lgt, .#{$c} &.lgt {
+			@include kl(($c, wh), bg);
+			@include kl($c, bdr);
+			@include kl($c);
+
+			&:active, &:focus, &:hover {
+				@include kl($c, bg);
+				@include kl($c, bdr);
+				@include kl(($c, wh));
+			}
+		}
+		&.#{$c}.semi, .#{$c} &.semi {
+			@include kl(transparent, bg);
+			@include kl(transparent bdr);
+			@include kl($c);
+
+			&:active, &:focus, &:hover {
+				@include kl(($c, wh), bg);
+			}
+		}
+	}
+	select, textarea, .inp, .sel,
+	[type=date], [type=datetime], [type=email], [type=month], [type=number],
+	[type=search], [type=password], [type=time], [type=tel], [type=text], [type=week] {
+		&.#{$c}, .#{$c} & {
+			@include kl($c, bdr);
+			@include kl($c);
+
+			&:active, &:focus, &:hover {
+				@include kl(($c, dk), bdr);
+				@include kl(($c, dk));
+			}
+		}
+		&.lgt.#{$c}, .#{$c} &.lgt {
+			@include kl(($c, wh), bg);
+			@include kl(($c, wh), bdr);
+			@include kl($c);
+		}
+		&.semi.#{$c}, .#{$c} &.semi {
+			@include kl(($c, wh), bg);
+			@include kl(($c, wh), bdr);
+		}
+	}
+	.chk, .rdo, .rge, [type=checkbox], [type=radio], [type=range] {
+		&.#{$c}, .#{$c} & {
+			@include kl(($c, wh), bg);
+			@include kl($c);
+		}
+	}
+	.chk, [type=checkbox] {
+		&.lgt.#{$c}, .#{$c} &.lgt {
+			&, &:checked::before {
+				@include kl(transparent, bg);
+			}
+		}
+		&.semi.#{$c}, .#{$c} &.semi {
+			&, &:checked {
+				@include kl(transparent, bg);
+			}
+		}
+	}
+	.rdo, [type=radio] {
+		&.lgt.#{$c}, .#{$c} &.lgt, &.semi.#{$c}, .#{$c} &.semi {
+			@include kl(transparent, bg);
+		}
+		&.lgt.#{$c}, .#{$c} &.lgt {
+			@include kl(transparent, bg);
+			
+			&:checked:before {
+				@include kl(($c, wh), bg);
+			}
+		}
+		&.semi.#{$c}, .#{$c} &.semi {
+			@include kl($c, bdr);
+		}
+	}
+	.rge, [type=range] {
+		&.#{$c}::-webkit-slider-runnable-track, &.#{$c}::-moz-range-track,
+		.#{$c} &::-webkit-slider-runnable-track, .#{$c} &::-moz-range-track {
+			@include kl(($c, wh), bg);
+		}
+	}
+}

@@ -1,0 +1,296 @@
+$fmbase: get($forms, m);
+$cbase: get($palettes, _);
+button, input, label, select, textarea, .btn, .inp, .sel {
+    @each $s, $v in $forms {
+        .fm-#{$s} &, &.fm-#{$s} {
+            @include ft(get($v, size), $l: get($v, lhei));
+            padding: get($v, gutt);
+        }
+    }
+}
+%inp-pad0 {
+    padding: 0;
+}
+[type=checkbox], [type=radio], [type=range] {
+    @each $s, $v in $forms {
+        .fm-#{$s} &, &.fm-#{$s} {
+            @extend %inp-pad0;
+        }
+    }
+}
+.fld {
+    > button, > input, > select, > textarea, > div {
+        + span {
+            @include bx;
+            margin-top: .75em;
+        }
+    }
+    > div {
+        width: 100%;
+    }
+}
+.btn-grp, [class^=fld-] {
+    @extend %flex-hz;
+    border-radius: .25em;
+    @include poz;
+    
+    label {
+        @include bx;
+        width: 100%;
+        @include mp(0, get($fmbase, gutt));
+    }
+    span {
+        @include bx;
+        margin: 0 .1em;
+    }
+    button, label, input, select, textarea, .btn, .chk, .inp, .rdo, .sel {
+        &, &:active, &:focus, &:hover {
+            @include kl(transparent, bg);
+            @include kl(currentColor);
+        }
+        //&:first-child {
+        //    border-radius: .25em 0 0 .25em;
+        //}
+        //&:last-child {
+        //    border-radius: 0 .25em .25em 0;
+        //}
+    }
+}
+.btn-grp {
+    @include kl(dark lt, bg);
+    border-radius: .25em;
+    overflow: hidden;
+    
+    button, .btn, [type=button], [type=submit], [type=reset] {
+        @include bx;
+        border: 0;
+        @include bd($c: rgba(#000, .15), $d: l);
+        border-radius: 0;
+        width: 100%;
+
+        &:active, &:focus, &:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+        &:first-child {
+            border-left: 0;
+        }
+    }
+}
+.inp-grp {
+    @extend %flex-hz;
+    width: 100%;
+
+    > * {
+        margin-left: .5em;
+        width: 100%;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+.fld-chk, .fld-dte, .fld-ico, .fld-num, .fld-rdo,
+.fld-rge, .fld-swt, .fld-tme, .fld-txt, .fld-upl {
+    input, label, span, select, textarea, .ico {
+        @include bx;
+        @include ft(get($fmbase, size), $l: get($fmbase, lhei));
+    }
+    span {
+        @include kl(dark);
+        @include ft(80%, lgt);
+    }
+    & + & {
+        margin-top: 1.5em;
+    }
+}
+.fld-chk, .fld-rdo {
+    label {
+        float: left;
+        margin-left: 1.5em;
+        width: 100%;
+    }
+    input {
+        float: left;
+        width: 1em;
+    }
+    &.rev {
+        label, span {
+            margin-left: 0;
+            margin-right: 1.5em;
+        }
+        input {
+            float: right;
+        }
+    }
+}
+.fld-drop {
+    @include kl(dark lt, bg);
+
+    a, button, .btn, [type=button], [type=reset], [type=submit] {
+        background: transparent;
+        border: 0;
+        @include kl(#fff, wh);
+        @include bx;
+        width: 100%;
+
+        &:active, &:focus, &:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+    }
+    span.down {
+        @include abs(50%, $r: 0);
+        transform: translate(0, -50%);
+        
+        &:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+    }
+    span.down:empty {
+        @extend %has-ab0;
+        @include kl(rgba(#fff, .25), bg);
+        @include wh(2em);
+        @include abs;
+        
+        &:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+        &::before, &::after {
+            @include kl(#fff, bg);
+            margin-top: .1em;
+            @include wh(.5em, .1em);
+            transition: all ease .2s;
+        }
+        &::before {
+            margin-left: -.165em;
+            transform: rotate(-45deg);
+        }
+        &::after {
+            margin-left: -.45em;
+            transform: rotate(45deg);
+        }
+    }
+    .lst {
+        @include kl(#fff, bg);
+        @include bd($c: currentColor, $r: .25em);
+        @include abs(100%, 0);
+        min-width: 100%;
+        transform: scaleY(0);
+        transform-origin: top left;
+        transition: all ease .2s;
+
+        a, button, .btn, [type=button], [type=reset], [type=submit] {
+            @include ft(90%, $t: none);
+        }
+        li:hover {
+            @include kl(rgba(#000, .1), bg);
+        }
+    }
+    &.active {
+        border-radius: .25em .25em 0 0;
+        z-index: 3;
+        
+        span.down:empty {
+            &::before, &::after {
+                margin-top: 0;
+                margin-left: -.45em;
+                @include wh(.9em, .1em);
+            }
+        }
+        .lst {
+            border-radius: 0 0 .25em .25em;
+            transform: scaleY(1);
+        }
+    }
+    &.lgt {
+        @include kl(#fff, bg);
+        @include bd($c: currentColor);
+
+        span.down:empty {
+            @include kl(#fff, bg);
+            @include bd($c: rgba(#000, .25), $d: l);
+
+            &:hover {
+                @include kl(rgba(#000, .1), bg);
+            }
+            &::before, &::after {
+                @include kl(currentColor, bg);
+            }
+        }
+    }
+    &.semi {
+        @include kl(rgba(#000, .05), bg);
+
+        span.down:empty {
+            @include kl(rgba(#000, .1), bg);
+            border-radius: 50%;
+
+            &:hover {
+                @include kl(rgba(#000, .25), bg);
+            }
+            &::before, &::after {
+                @include kl(currentColor, bg);
+            }
+        }
+        .lst {
+            @include kl(dark wh, bg);
+            border: 0;
+        }
+    }
+    &.upp {
+        .lst {
+            top: unset;
+            bottom: 100%;
+            transform-origin: bottom left;
+        }
+        &.active {
+            border-radius: 0 0 .25em .25em;
+    
+            .lst {
+                border-radius: .25em .25em 0 0;
+            }
+        }
+    }
+}
+.fld-txt {
+    @include bd($c: currentColor, $r: .25em);
+    
+    button {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        @include bd($c: currentColor, $d: l);
+
+        &:active, &:focus, &:hover {
+            @include kl(dark wh, bg);
+        }
+    }
+    input, textarea {
+        + button {
+            border-left: 0;
+            @include bd($c: currentColor, $d: r);
+        }
+    }
+    label, input, textarea {
+        background: transparent;
+        border: 0;
+        @include bx;
+        width: 100%;
+    }
+    label {
+        @include abs(0, 0);
+        z-index: 1;
+        transition: all ease .2s;
+    }
+    &.active, &:hover {
+        label {
+            @include kl(dark);
+            transform: scale(.75) translate(-15%, -95%);
+        }
+    }
+}
+.fld-rge, .fld-upl {
+    input {
+        @include mp(0, get($fmbase, gutt));
+        width: 100%;
+    }
+}

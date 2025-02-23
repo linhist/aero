@@ -1,0 +1,52 @@
+body, button, input, label, p, select, textarea {
+    @include ft(p, md, $l: p, $f: base);
+}
+label {
+    @include ft(tip);
+}
+
+$specs: get($typographs, specs);
+p {
+    @include bx(get($specs, (_, gutt)), 0);
+    @include ft($w: get($specs, (_, weit)));
+}
+
+@each $s, $v in $specs {
+    $as: '';
+    @if $s != _ {
+        $cn: get($v, range);
+        @for $i from 0 to $cn {
+            @if $s == h {
+                $as: jx(', ', $as, 'h#{$i + 1}', '.h#{$i + 1}');
+                h#{$i + 1}, .h#{$i + 1}, .tx-h#{$i + 1} {
+                    @include ft(($s $i));
+                }
+            }
+            @else {
+                $as: jx(',', $as, '.#{$s}#{$i + 1}');
+                .#{$s}#{$i + 1}, .tx-#{$s}#{$i + 1} {
+                    @include ft(($s $i));
+                }
+            }
+        }
+        #{$as} {
+            @include kl(get($v, color));
+            @include bx(get($v, gutt), 0);
+            @include ft($w: get($v, weit), $l: get($v, lhei));
+        }
+    }
+}
+
+
+@each $a in (lf, rt, ct, jt) {
+    .tx-#{$a} {
+        text-align: dic($a) !important;
+    }
+}
+
+$fweis: get($typographs, weights);
+@each $w, $v in $fweis {
+    .tx-#{$w} {
+        font-weight: $v !important;
+    }
+}

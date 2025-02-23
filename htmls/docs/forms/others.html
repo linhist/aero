@@ -1,0 +1,516 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>aero Site Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="../../../styles/site.css" rel="stylesheet">
+	<link href="../../../styles/docs.css" rel="stylesheet">
+</head>
+<body class="has-sb show-sb">
+    <div class="sidebar">
+        <div class="brand"><a href="../../index.html"><b style="color: #fff;">aero</b></a><small>Documentations</small></div>
+        <ul class="lst">
+            <li>Common</li>
+            <li><a href="../colors.html">Color palettes</a></li>
+            <li><a href="../grids.html">Grid system</a></li>
+            <li><a href="../typo.html">Typography</a></li>
+            <li><b>Form Elements</b></li>
+            <li><a href="button.html">Button</a></li>
+            <li><a href="input.html">Text input</a></li>
+            <li><a href="number.html">Number input</a></li>
+            <li><a href="select.html">Selection</a></li>
+            <li><a href="check.html">State switch</a></li>
+            <li><a href="datetime.html">Datetime picker</a></li>
+            <li><a class="active" href="others.html">Others</a></li>
+        </ul>
+    </div>
+    <main class="pg-cover">
+        <div class="cap1">Form elements</div>
+        <form>
+            <fieldset class="rd2 pdz">
+                <legend>Origin form elements</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Text input"/>
+                        <pre>&lt;input type=&quot;text&quot; placeholder=&quot;Text input&quot; /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="email" placeholder="Email input"/>
+                        <pre>&lt;input type="email" placeholder="Email input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="search" placeholder="Search input"/>
+                        <pre>&lt;input type="search" placeholder="Search input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="password" placeholder="Password input"/>
+                        <pre>&lt;input type="password" placeholder="Password input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="tel" placeholder="Tel input"/>
+                        <pre>&lt;input type="tel" placeholder="Tel input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="number" placeholder="Number input"/>
+                        <pre>&lt;input type="number" placeholder="Number input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="datetime" placeholder="Datetime input"/>
+                        <pre>&lt;input type="datetime" placeholder="Datetime input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="month" placeholder="Month input"/>
+                        <pre>&lt;input type="month" placeholder="Month input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="week" placeholder="Week input"/>
+                        <pre>&lt;input type="week" placeholder="Week input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="date" placeholder="Date input"/>
+                        <pre>&lt;input type="date" placeholder="Date input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="time" placeholder="Time input"/>
+                        <pre>&lt;input type="time" placeholder="Time input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <textarea placeholder="Textarea input"></textarea>
+                        <pre>&lt;textarea placeholder="Textarea input"&gt;&lt;/textarea /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="range"/>
+                        <pre>&lt;input type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="button" value="Button input"/>
+                        <pre>&lt;input type="button" value="Button input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button>This is a button</button>
+                        <pre>&lt;button&gt;This is a button&lt;/button&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="image" value="Image button"/>
+                        <pre>&lt;input type="image" value="Image button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="file" placeholder="File input"/>
+                        <pre>&lt;input type="file" placeholder="File input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <label>This is a label</label>
+                        <pre>&lt;label&gt;This is a label&lt;/label&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="color" placeholder="Color input"/>
+                        <pre>&lt;input type="color" placeholder="Color input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <select>
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="prime">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="alter">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="valid">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="error">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="alert">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="dark">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Elements by state</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Valid input" required value="Valid input"/>
+                        <pre>&lt;input type="text" placeholder="Valid input" required value="Valid input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Invalid input" required />
+                        <pre>&lt;input type="text" placeholder="Invalid input" required /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="text" placeholder="Disabled input" disabled />
+                        <pre>&lt;input type="text" placeholder="Disabled input" disabled /&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="valid" type="submit" value="Valid button"/>
+                        <pre>&lt;input class="valid" type="submit" value="Valid button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="error" type="submit" value="Invalid button"/>
+                        <pre>&lt;input class="error" type="submit" value="Invalid button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input type="submit" value="Disabled button" disabled />
+                        <pre>&lt;input type="submit" value="Disabled button" disabled /&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Elements color palettes</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input class="prime" type="text" placeholder="Prime input"/>
+                        <pre>&lt;input class="prime" type="text" placeholder="Prime input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alter" type="text" placeholder="Alter input"/>
+                        <pre>&lt;input class="alter" type="text" placeholder="Alter input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="valid" type="text" placeholder="Valid input"/>
+                        <pre>&lt;input class="valid" type="text" placeholder="Valid input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="error" type="text" placeholder="Error input"/>
+                        <pre>&lt;input class="error" type="text" placeholder="Error input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alert" type="text" placeholder="Alert input"/>
+                        <pre>&lt;input class="alert" type="text" placeholder="Alert input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="dark" type="text" placeholder="Dark input"/>
+                        <pre>&lt;input class="dark" type="text" placeholder="Dark input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="prime" type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input class="prime" type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alter" type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input class="alter" type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="valid" type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input class="valid" type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="error" type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input class="error" type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alert" type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input class="alter" type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="dark" type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input class="dark" type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="prime" type="range"/>
+                        <pre>&lt;input class="prime" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alter" type="range"/>
+                        <pre>&lt;input class="alter" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="valid" type="range"/>
+                        <pre>&lt;input class="valid" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="error" type="range"/>
+                        <pre>&lt;input class="error" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alert" type="range"/>
+                        <pre>&lt;input class="alert" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="dark" type="range"/>
+                        <pre>&lt;input class="dark" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="prime" type="submit" value="Prime button"/>
+                        <pre>&lt;input class="prime" type="text" value="Prime button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alter" type="submit" value="Alter button"/>
+                        <pre>&lt;input class="prime" type="text" value="Alter button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="valid" type="submit" value="Valid button"/>
+                        <pre>&lt;input class="valid" type="text" value="Valid button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="error" type="submit" value="Error button"/>
+                        <pre>&lt;input class="error" type="text" value="Error button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="alert" type="submit" value="Alert button"/>
+                        <pre>&lt;input class="alert" type="text" value="Alert button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="dark" type="submit" value="Dark button"/>
+                        <pre>&lt;input class="dark" type="text" value="Dark button"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button class="lgt prime">Prime button</button>
+                        <pre>&lt;button class="lgt prime"&gt;Prime button&lt;/button&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button class="lgt alter">Alter button</button>
+                        <pre>&lt;button class="lgt alter"&gt;Alter button&lt;/button&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button class="lgt valid">Valid button</button>
+                        <pre>&lt;button class="lgt valid"&gt;Valid button&lt;/button&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button class="lgt error">Error button</button>
+                        <pre>&lt;button class="lgt error"&gt;Error button&lt;/button&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button class="lgt alert">Alert button</button>
+                        <pre>&lt;button class="lgt alert"&gt;Alert button&lt;/button&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <button class="lgt dark">Dark button</button>
+                        <pre>&lt;button class="lgt dark"&gt;Dark button&lt;/button&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Elements with sizes</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <input class="fm-s" type="text" placeholder="Small Input"/>
+                        <pre>&lt;input class="fm-s" type="text" placeholder="Small Input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-m" type="text" placeholder="Medium Input"/>
+                        <pre>&lt;input class="fm-m" type="text" placeholder="Medium Input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-l" type="text" placeholder="Large Input"/>
+                        <pre>&lt;input class="fm-l" type="text" placeholder="Large Input"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-s" type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input class="fm-s" type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-m" type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input class="fm-m" type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-l" type="checkbox"/>
+                        This is a checkbox
+                        <pre>&lt;input class="fm-l" type="checkbox"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-s" type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input class="fm-s" type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-m" type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input class="fm-m" type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-l" type="radio"/>
+                        This is a radio button
+                        <pre>&lt;input class="fm-l" type="radio"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-s" type="range"/>
+                        <pre>&lt;input class="fm-s" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-m" type="range"/>
+                        <pre>&lt;input class="fm-m" type="range"/&gt;</pre>
+                    </div>
+                    <div class="col x4 py2">
+                        <input class="fm-l" type="range"/>
+                        <pre>&lt;input class="fm-l" type="range"/&gt;</pre>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Specified elements</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <div class="fld-txt">
+                            <input id="inp1" type="text" value=""/>
+                            <label for="inp1">Text field only</label>
+                            <span>This is a help text</span>
+                        </div>
+                        <div class="fld-ico">
+                            <i class="ico">i</i>
+                            <div class="fld-txt">
+                                <input id="inp2" type="text" value=""/>
+                                <label for="inp2">Text field with icon left</label>
+                            </div>
+                        </div>
+                        <div class="fld-ico">
+                            <div class="fld-txt">
+                                <input id="inp3" type="text" value=""/>
+                                <label id="inp3">Text field with icon right</label>
+                            </div>
+                            <i class="ico">i</i>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld-txt fld-ico">
+                            <i class="ico">i</i>
+                            <input id="inp2" type="text" value=""/>
+                            <label for="inp2">Text field with icon left</label>
+                        </div>
+                    </div>
+                    <div class="col x4 py2">
+                        <div class="fld-txt fld-ico rev">
+                            <i class="ico">i</i>
+                            <input id="inp3" type="text" value=""/>
+                            <label id="inp3">Text field with icon right</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="cl5"></div>
+            <fieldset class="rd2 pdz">
+                <legend>Select elements</legend>
+                <div class="row">
+                    <div class="col x4 py2">
+                        <select class="prime">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="alter">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="valid">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="error">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="alert">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col x4 py2">
+                        <select class="dark">
+                            <optgroup label="Select item...">
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../../../scripts/site.js"></script>
+</body>
+</html>

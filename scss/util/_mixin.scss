@@ -1,113 +1,528 @@
-@mixin kl($c: base, $t: null, $s: null, $o: 1) {
-    $s: dic($s);
-    $s:  + color;
-    #{if($s == null, color, #{$s}-color)}: kolor($c, $t, $o);
+@mixin imp($s, $v, $i: false) {
+    @if $i {
+        #{$s}: $v !important;
+    }
+    @else {
+        #{$s}: $v;
+    }
 }
-@mixin blk($m: null, $p: null, $f: null, $d: block) {
-    display: dic($d);
-    float: dic($f);
-    @include mp($m, $p);
+@mixin rge($s, $v, $a: null, $i: false) {
+    @if $a == null {
+        @include imp($s, $v, $i);
+    }
+    @else {
+        @each $d in $a {
+            @include imp(#{$s}-#{alt(dic($d), $d)}, $v, $i);
+        }
+    }
 }
-@mixin bdr($s: 1px, $c: null, $t: solid, $r: null, $d: null) {
-    $c: kolor($c);
-    @if $d == null {
-        border: $t $s $c;
+@mixin var($s, $m, $v, $n, $t: null, $i: false) {
+    @if idx($m, $v) == null
+    {
+        @if $t == null or is($t, $v) {
+            @include imp($s, $v, $i);
+        }
+    }
+    @else {
+        $a: val($m, $v, $t);
+        @if not $variablize or $overriden or $v == '_' {
+            @include imp($s, $a, $i);
+        }
+        @if $variablize and $v != '_' {
+            @include imp($s, var(--#{$n}), $i);
+        }
+    }
+}
+
+/// Generate color style:
+/// color: #ccc;
+/// background-color: #ccc;
+@mixin kl($c: base, $s: null, $a: 1, $i: false) {
+    $s: jx('-', alt(dic($s), $s), 'color');
+    $a: if(is(num, $a), $a, alt(get($palettes, (alphas, $a)), 1));
+    $a: if(is(num, $a), $a, 1);
+    $a: if($a > 1 and $a < 100, calc($a / 100), if($a >= 0 and $a <= 1, $a, 1));
+
+    @if mt($c) or $c == currentColor or $c == transparent {
+        @include imp($s, $c, $i);
+    }
+    @else {
+        $c0: get($c, 1);
+        $c1: get($c, 2);
+        @if not mt($s) {
+            @if get($palettes, (colors, $c0)) == null {
+                @if is(color, $c) {
+                    @include imp($s, pal($c, $a: $a), $i);
+                }
+            }
+            @else {
+                @if not $variablize or $overriden or $c0 == '_' or $a != 1 {
+                    @include imp($s, pal($c0, $c1, $a), $i);
+                }
+                @if $variablize and $c0 != '_' and $a == 1 {
+                    @include imp($s, var(#{jx('-', --kl, $c0, $c1)}), $i);
+                }
+            }
+        }
+    }
+}
+/// Generate border style like:
+/// border: solid 1px #ccc;
+/// border-top: solid 1px #ccc;
+/// [border-radius: 3px;]
+@mixin bd($s: 1px, $c: null, $t: solid, $r: null, $d: null, $i: false) {
+    $c0: get($c, 1);
+    $c1: get($c, 2);
+    $kl: pal($c0, $c1);
+    @if mt($c) or mt($s) { }
+    @else if $c == currentColor or $c == transparent or $kl == null {
+        @include rge(border, $t $s if(is(color, $c), $c, null), $d, $i);
+    }
+    @else {
+        @if not $variablize or $overriden or $c0 == '_' {
+            @include rge(border, alt($t, solid) alt($s, 0) $kl, $d, $i);
+        }
+        @if $variablize and $c0 != '_' {
+            @include rge(border, alt($t, solid) alt($s, 0) var(#{jx('-', --kl, $c0, $c1)}), $d, $i);
+        }
+    }
+    
+    @include imp(border-radius, $r, $i);
+}
+/// Generate typographic style like:
+/// font-size: 1em;
+/// [font-family: serif;]
+/// [font-weight: bold;]
+/// [font-style: italic;]
+/// [font-style: italic;]
+/// [text-decoration: underline;]
+/// [text-transform: uppercase;]
+@mixin ft($s: null, $w: null, $t: null, $a: null, $l: null, $f: null, $i: false) {
+    $families: get($typographs, fonts);
+    @if idx($families, $f) == null {
+        @if not mt($f) {
+            @include imp(font-family, $f, $i);
+        }
+    }
+    @else {
+        $fm: get($families, $f);
+        @if not $variablize or $overriden or $f == '_' {
+            @include imp(font-family, $fm, $i);
+        }
+        @if $variablize and $f != '_' {
+            @include imp(font-family, var(#{jx('-', --ft, $f)}), $i);
+        }
+    }
+    
+    $specs: get($typographs, specs);
+    $s0: get($s, 1);
+    $s1: alt(get($s, 2), 0);
+    @if $s == '_' or $s == p {
+        @if not $variablize or $overriden {
+            @include imp(font-size, get($specs, (_, size)), $i);
+        }
+        @if $variablize and $s0 != '_' {
+            @include imp(font-size, var(--ft-sz-p), $i);
+        }
+    }
+    @else if idx($specs, $s0) == null {
+        @if is(num, $s) {
+            @include imp(font-size, $s, $i);
+        }
+    }
+    @else {
+        $sz: get($specs, ($s0, size));
+        $st: alt(get($specs, ($s0, step)), 0);
+        $cn: alt(get($specs, ($s0, range)), 0);
+        @if $s1 >= 0 and $s1 < $cn {
+            $sz: $sz + if($st > 0, ($cn - $s1 - 1) * $st, $s1 * $st);
+            @if not $variablize or $overriden {
+                @include imp(font-size, $sz, $i);
+            }
+            @if $variablize {
+                @include imp(font-size, var(--ft-sz-#{$s0}#{$s1 + 1}), $i);
+            }
+        }
+    }
+
+    $w: alt(val($typographs, (weights, $w), num), $w);
+    @if is(num, $w) {
+        @include imp(font-weight, $w, $i);
+    }
+    
+    $t: alt(dic($t), $t);
+    @if idx((italic, normal), $t) {
+        @include imp(font-style, $t, $i);
+    }
+    @include lh($l, $i: $i);
+
+    @if idx((underline, overline, unquote('line-though')), $t) != null {
+        @include imp(text-decoration, $t, $i);
+    }
+    @if idx((uppercase, lowercase, none), $t) != null {
+        @include imp(text-transform, $t, $i);
+    }
+
+    $a: alt(dic($a), $a);
+    @if not mt($a) {
+        @include imp(text-align, $a, $i);
+    }
+}
+/// Generate display style like:
+/// display: block;
+/// [float: left;]
+/// [margin: 1px;]
+/// [padding: 5px;]
+@mixin bx($m: null, $p: null, $f: null, $d: block, $i: false) {
+    $im: if($i, ' !important', '');
+    $d: alt(dic($d), $d);
+    @if not mt($d) {
+        display: $d#{$im};
+    }
+
+    $f: alt(dic($f), $f);
+    @if not mt($f) {
+        float: $f#{$im};
+    }
+    
+    @include mp($m, $p, $i: $i);
+}
+/// Generate display flex with other style like:
+/// display: inline-block;
+/// [margin: 1px;]
+/// [padding: 5px;]
+@mixin nlb($m: null, $p: null, $i: false) {
+    @include bx($m, $p, null, inline-block, $i);
+}
+/// Generate display flex with other style like:
+/// display: inline;
+@mixin nl($i: false) {
+    @include bx($d: inline, $i: $i);
+}
+/// Generate display flex with other style like:
+/// display: flex;
+/// [margin: 1px;]
+/// [padding: 5px;]
+@mixin flx($m: null, $p: null, $i: false) {
+    display: flex#{if($i, ' !important', '')};
+    @include mp($m, $p, $i);
+}
+/// Generate display grid with other style like:
+/// display: flex;
+/// [margin: 1px;]
+/// [padding: 5px;]
+@mixin grd($m: null, $p: null, $i: false) {
+    display: grid#{if($i, ' !important', '')};
+    @include mp($m, $p, $i);
+}
+/// Generate line height style with other style like:
+/// line-height: 1em;
+/// [height: 1em;]
+/// [width: 100%;]
+/// [font-size: 1em;]
+@mixin lh($l, $h: null, $w: null, $i: false) {
+    $specs: get($typographs, (specs));
+    @if $l == _ or $l == p {
+        @if not $variablize or $overriden {
+            @include imp(line-height, get($specs, (_, lhei)), $i);
+        }
+        @if $variablize {
+            @include imp(line-height, var(--ln-hei-p), $i);
+        }
+    }
+    @else if idx($specs, $l) == null {
+        @if is(num, $l) {
+            @include imp(line-height, $l, $i);
+        }
+    }
+    @else {
+        $lh: get($specs, ($l, lhei));
+        @if not $variablize or $overriden {
+            @include imp(line-height, $lh, $i);
+        }
+        @if $variablize {
+            @include imp(line-height, var(--ln-hei-#{$l}), $i);
+        }
+    }
+
+    @include wh($w, $h, $i: $i);
+}
+/// Generate margin and paddingpadding style like:
+/// margin: 1em;
+/// padding: 1em;
+/// margin-top: 10px;
+/// padding-top: 10px;
+@mixin mp($m, $p: $m, $d: null, $i: false) {
+    @if mt($d) {
+        @include var(margin, $spaces, $m, mp, $i: $i);
+        @include var(padding, $spaces, $p, mp, $i: $i);
     }
     @else {
         @each $a in $d {
             $b: dic($a);
-            @if ($b != null) {
-                border-#{$b}: $t $s $c;
+            @if not mt($b) {
+                @include var(margin-#{$b}, $spaces, $m, mp, $i: $i);
+                @include var(padding-#{$b}, $spaces, $p, mp, $i: $i);
             }
         }
     }
-    border-radius: $r;
 }
-@mixin ft($s: null, $w: null, $t: null, $a: null, $l: null, $f: null) {
-    font-family: val($fonts, $f);
-    font-size: val($sizes, $s, num);
-    font-weight: vany($weights, $w, num);
+/// Generate overflowoverflow style like:
+/// overflow: hidden;
+/// overflow-x: auto;
+@mixin of($v, $d: null, $i: false) {
+    $v: alt(dic($v), $v);
+    $im: if($i, ' !important', '');
 
-    $t: dic($t);
-    @if $t == italic {
-        font-style: $t;
+    @if not mt($v) { 
+        @if $d == null {
+            overflow: $v#{$im};
+        }
+        @else {
+            overflow-#{$d}: $v#{$im};
+        }
     }
-    line-height: val($sizes, $l, num);
+}
+/// Generate location style like:
+/// [top: 0;]
+/// [left: 0;]
+/// [bottom: 0;]
+/// [right: 0;]
+/// [z-index: 1;]
+@mixin loc($t: null, $l: null, $b: null, $r: null, $i: false) {
+    @each $s, $v in (t: $t, b: $b, l: $l, r: $r) {
+        $d: dic($s);
+        @if not mt($d) and is(num, $v) {
+            @include imp($d, $v, $i);
+        }
+    }
+}
+/// Generate position style like:
+/// position: absolute;
+/// [top: 0;]
+/// [left: 0;]
+/// [bottom: 0;]
+/// [right: 0;]
+/// [z-index: 1;]
+@mixin poz($p: relative, $t: null, $l: null, $b: null, $r: null, $z: null, $i: false) {
+    $p: dic($p);
+    @if not mt($p) {
+        @include imp(position, $p, $i);
+    }
+    @if is(num, $z) {
+        @include imp(z-index, $z, $i);
+        z-index: $z#{$i};
+    }
+    @include loc($t, $l, $b, $r, $i);
+}
+/// Generate position relative style like:
+/// position: relative;
+@mixin rel($i: false) {
+    @include imp(position, relative, $i);
+}
+/// Generate position absolute with other style like:
+/// position: absolute;
+/// [top: 0;]
+/// [left: 0;]
+/// [bottom: 0;]
+/// [right: 0;]
+/// [z-index: 1;]
+@mixin abs($t: null, $l: null, $b: null, $r: null, $z: null, $i: false) {
+    @include poz(absolute, $t, $l, $b, $r, $z, $i);
+}
+/// Generate position fixed style with other style like:
+/// position: absolute;
+/// [top: 0;]
+/// [left: 0;]
+/// [bottom: 0;]
+/// [right: 0;]
+/// [z-index: 1;]
+@mixin fix($t: null, $l: null, $b: null, $r: null, $z: null, $i: false) {
+    @include poz(fixed, $t, $l, $b, $r, $z, $i);
+}
+/// Generate element size style like:
+/// [width: 0;]
+/// [height: 0;]
+/// [min-width: 0;]
+/// [min-height: 0;]
+/// [max-width: 0;]
+/// [max-height: 0;]
+@mixin wh($w, $h: $w, $mw: null, $mh: null, $xw: null, $xh: null, $i: false) {
+    $i: if($i, ' !important', '');
+    @if is(num, $h) {
+        height: $h#{$i};
+    }
+    @if is(num, $w) {
+        width: $w#{$i};
+    }
+    @if is(num, $mh) {
+        min-height: $mh#{$i};
+    }
+    @if is(num, $mw) {
+        min-width: $mw#{$i};
+    }
+    @if is(num, $xh) {
+        max-height: $xh#{$i};
+    }
+    @if is(num, $xw) {
+        max-width: $xw #{$i};
+    }
+}
 
-    @if has((underline, overline, unquote('line-though')), $t) {
-        text-decoration: $t;
-    }
-    @if has((uppercase, lowercase, none), $t) {
-        text-transform: $t;
-    }
-    text-align: dic($a);
-}
-@mixin lh($l, $h: null, $w: null) {
-    line-height: val($sizes, $l, num);
-    height: $h;
-    width: $w;
-}
-@mixin mp($m, $p: $m) {
-    margin: if(is(lst, $m), $m, val($sizes, $m, num));
-    padding: if(is(lst, $p), $p, val($sizes, $p, num));
-}
-@mixin of($v, $d: null) {
-    @if $d == null {
-        overflow: $v;
-    }
-    @else {
-        overflow-#{$d}: $v;
-    }
-}
-@mixin poz($p: relative, $t: null, $l: null, $b: null, $r: null, $z: null) {
-    position: dic($p);
-    top: $t;
-    left: $l;
-    bottom: $b;
-    right: $r;
-    z-index: $z;
-}
-@mixin wh($w, $h: $w, $mw: null, $mh: null) {
-    height: $h;
-    width: $w;
-    max-width: $mw;
-    max-height: $mh;
-}
-@mixin b_a($b: block, $a: block, $c: '') {
-    $c: #{$c} + if($c != '', ',', '') + '&::before' + '&::after';
 
+@mixin con($c: '', $s: null, $d: block) {
+    $g: '';
+    @if $s == null {
+        $g: '&::after, &::before';
+    }
+    @else if dic($s) == after {
+        $g: '&::after';
+    }
+    @else if dic($s) == before {
+        $g: '&::before';
+    }
+
+    @if not mt($g) {
+        #{$g} {
+            content: $c;
+            @include blk($d: $d);
+            @content;
+        }
+    }
 }
 @mixin mda($s1, $s2) {
-    $s1: val($screens, $s1, num);
-    $s2: val($screens, $s2, num);
-
-    $mda1: if($s1 != null and $s1 > 0, '(min-width: #{$s1})', '');
-    $mda2: if($s2 != null and $s2 > 0, '(max-width: #{$s2 - 0.001})', '');
-    $mda: $mda1 + if($mda1 == '' or $mda2 == '', '', ' and ') + $mda2;
-
-    @if $mda1 == '' and $mda2 == '' {
+    $grids: get($layouts, grids);
+    $s1: alt(get($grids, ($s1, size)), if(is(num, $s1), $s1, 0));
+    $s2: alt(get($grids, ($s2, size)), if(is(num, $s2), $s2, 0));
+    $mda: jx(' and ', if($s1 > 0, '(min-width: #{$s1})', ''), if($s2 > 0, '(max-width: #{$s2 - .01})', ''));
+    @if mt($mda) {
         @content;
     }
     @else {
-        @media only screen and #{unquote($mda)} {
+        @media only screen and #{$mda} {
             @content;
         }
     }
 }
 @mixin mda-ol($s) {
-    $i: idx($screens, $s);
-    
-    @include mda(val($screens, $i), val($screens, i + 1)) {
+    $grids: get($layouts, grids);
+    $i: idx($grids, $s);
+    @if $i == null {
         @content;
     }
+    @else {
+        @include mda($s, dic($grids, $i)) {
+            @content;
+        }
+    }
 }
-@mixin mda-ov($s) {
+@mixin mda-ov($s: null) {
+    @if mt($s) {
+        $g: get($layouts, grids);
+        $s: dic(get($g, 1), $g);
+    }
     @include mda($s, 0) {
         @content;
     }
 }
-@mixin mda-ud($s) {
+@mixin mda-ud($s: null) {
+    @if mt($s) {
+        $g: get($layouts, grids);
+        $s: dic(get($g, length($g)), $g);
+    }
     @include mda(0, $s) {
         @content;
     }
+}
+
+%boxy {
+    @include bx(0, 0);
+}
+%cle {
+    clear: both;
+    @include bx(0, 0, none, table);
+    @include wh(100%, 0);
+    visibility: hidden;
+}
+%clfx {
+    @include bx($f: none);
+
+    &::after {
+        clear: both;
+        content: '';
+        @include bx(0, 0, none, table);
+        @include wh(100%, 0);
+        visibility: hidden;
+    }
+}
+%clbx {
+    clear: both;
+    @include bx($f: none);
+
+    &::before, &::after {
+        clear: both;
+        content: '';
+        @include bx(0, 0, none, table);
+        @include wh(100%, 0);
+        visibility: hidden;
+    }
+}
+%no-spx {
+    @include mp(0);
+}
+%trans-mid {
+    @include abs(50%, 50%);
+    transform: translate(-50%, -50%);
+}
+%afbf {
+    content: '';
+    @include bx(0, 0);
+}
+%afbf0 {
+    content: '';
+    @include bx(0, 0);
+    @include wh(0);
+    @include abs(50%, 50%);
+    transform: translate(-50%, -50%);
+}
+%has-af {
+    &::after {
+        @extend %afbf;
+    }
+}
+%has-bf {
+    &::before {
+        @extend %afbf;
+    }
+}
+%has-ab {
+    &::before, &::after {
+        @extend %afbf;
+    }
+}
+%has-af0 {
+    @include poz;
+
+    &::after {
+        @extend %afbf0;
+    }
+}
+%has-bf0 {
+    @include poz;
+
+    &::before {
+        @extend %afbf0;
+    }
+}
+%has-ab0 {
+    @include poz;
+
+    &::before, &::after {
+        @extend %afbf0;
+    }
+}
+%flex-hz {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }

@@ -1,0 +1,209 @@
+$fmbase: get($forms, m);
+$cbase: get($palettes, _);
+button, input, label, select, textarea, .btn, .inp, .sel, .chk, .rdo, .rge {
+	@include kl(#fff, bg);
+	@include bd($c: currentColor, $r: .25em);
+    padding: get($fmbase, gutt);
+    @include ft(get($fmbase, size), $l: get($fmbase, lhei));
+    transition: all ease .2s;
+}
+button, .btn , [type=button], [type=reset], [type=submit] {
+	appearance: button;
+	@include kl(dark, bg);
+	@include kl(dark, bdr);
+    @include kl(#fff);
+	cursor: pointer;
+    text-transform: uppercase;
+
+	&:active, &:focus, &:hover {
+        @include kl(dark dk, bg);
+        @include kl(dark dk, bdr);
+	}
+	&.lgt, .lgt & {
+        @include kl(transparent, bg);
+        color: inherit;
+
+        &:active, &:focus, &:hover {
+            @include kl(dark, bg);
+            @include kl(#fff);
+            background-image: none;
+        }
+	}
+	&.semi, .semi & {
+        @include kl(transparent, bg);
+        @include kl(transparent bdr);
+        color: inherit;
+        border-width: 0;
+
+        &:active, &:focus, &:hover {
+            @include kl(dark lt, bg);
+            @include kl(dark lt, bdr);
+        }
+	}
+}
+[type=submit] {
+	@include kl(prime, bg);
+	@include kl(prime, bdr);
+
+	&:active, &:focus, &:hover {
+        @include kl(prime dk, bg);
+        @include kl(prime dk, bdr);
+	}
+}
+[type=reset] {
+	@include kl(alert, bg);
+	@include kl(alert, bdr);
+
+	&:active, &:focus, &:hover {
+        @include kl(alert dk, bg);
+        @include kl(alert dk, bdr);
+	}
+}
+select, textarea, .inp, .sel,
+[type=date], [type=datetime], [type=email], [type=month], [type=number],
+[type=search], [type=password], [type=time], [type=tel], [type=text], [type=week] {
+    &.lgt, &.lgt {
+        @include kl(dark lt, bg);
+        @include kl(dark lt, bdr);
+    }
+	&.semi, .semi & {
+        border-radius: .25em .25em 0 0;
+        @include kl(#fff, bdr);
+        @include kl(currentColor, border-bottom, $i: true);
+	}
+}
+.chk, .rdo, [type=checkbox], [type=radio] {
+    border-width: .1em;
+    margin: -.1em 0 0;
+    
+    &.lgt, .lgt & {
+        &::before {
+            @include kl(currentColor, bg);
+            @include kl(transparent, bdr);
+            @include bx;
+            @include wh(.9em, .1em);
+        }
+        &, &:checked {
+            @include kl(transparent, bg);
+            @include kl(transparent, bdr);
+        }
+    }
+    &.semi, .semi & {
+        &, &:checked {
+            @include kl(transparent, bg);
+        }
+    }
+}
+.chk, [type=checkbox] {
+    @extend %has-bf0;
+    @include wh(1.1em);
+
+    &::before {
+        display: none;
+        transform-origin: top left;
+        transition: all ease .2s;
+    }
+    &:checked {
+        @include kl(currentColor, bg);
+
+        &:checked::before {
+            @include bd(.125em, #fff, $d: b r);
+            @include bx;
+            margin-top: -.1em;
+            @include wh(.4em, .7em);
+            transform: rotate(35deg) translate(-50%, -50%);
+        }
+    }
+    &.lgt, &.lgt {
+        &:checked::before {
+            @include kl(transparent, bg);
+            @include kl(currentColor, bdr);
+            @include wh(.5em, .85em);
+        }
+    }
+    &.semi, .semi & {
+        &:checked::before {
+            @include kl(currentColor, bdr);
+        }
+    }
+}
+.rdo, [type=radio] {
+    @extend %has-bf0;
+	border-radius: 50%;
+    @include wh(1.1em);
+
+    &::before {
+        @include kl(currentColor, bg);
+        border-radius: 50%;
+        display: none;
+        @include wh(60%);
+		transition: all ease .2s;
+    }
+    &:checked {
+        &::before {
+            @include bx;
+        }
+    }
+    &.lgt, .lgt & {
+        &::before {
+            border-radius: 0;
+        }
+        &:checked::before {
+            @include kl(transparent, bg);
+            @include bd(.1em, currentColor, $r: 50%);
+            @include wh(75%);
+        }
+    }
+}
+.rge, [type=range] {
+    @include kl(dark lt, bg);
+    border-width: 0;
+    border-radius: .1em;
+    height: .25em;
+    margin: .5em 0;
+    
+    &::-webkit-slider-thumb, &::-moz-range-thumb {
+        appearance: none;
+		@include kl(#fff, bg);
+        @include bd(.1em, currentColor, $r: 50%);
+        cursor: pointer;
+        margin: -.4em;
+        @include wh(1.05em);
+        @include poz;
+        z-index: 1;
+    }
+    &:hover::-webkit-slider-thumb, &:hover::-moz-range-thumb {
+		@include kl(currentColor, bg);
+	}
+}
+.disabled, [disabled], [readonly] {
+	@include kl(get($cbase, disab), bg);
+	@include kl(currentColor, bdr);
+	@include kl(get($cbase, text), $a: .25);
+}
+input[required]:invalid, select[required]:invalid, textarea[required]:invalid {
+	@include kl(get($cbase, inval), bdr);
+	@include kl(get($cbase, inval));
+}
+input[required]:valid, select[required]:valid, textarea[required]:valid {
+	@include kl(get($cbase, valid), bdr);
+	@include kl(get($cbase, valid));
+}
+form.box {
+    select, textarea, .btn, .inp, .sel,
+    [type=date], [type=datetime], [type=email], [type=month], [type=number],
+    [type=range], [type=search], [type=password], [type=time], [type=tel],
+    [type=text], [type=week] {
+        @include bx;
+        width: 100%;
+    }
+}
+button, select, textarea, .btn, .inp, .sel,
+[type=button], [type=date], [type=datetime], [type=email], [type=month],
+[type=number], [type=reset], [type=range], [type=search], [type=submit], [type=password],
+[type=time], [type=tel], [type=text], [type=week] {
+    .fld &, &.fill {
+        @include bx;
+        width: 100%;
+    }
+}

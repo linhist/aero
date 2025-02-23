@@ -1,0 +1,74 @@
+.sidebar .lst a::before {
+  content: "";
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar .lst a {
+  position: relative;
+}
+code, kbd, pre, samp {
+  background-color: #171717;
+  color: #d8ebdc;
+  display: block;
+  margin: 1em 0 0;
+  padding: 0.5em;
+  font-size: 80%;
+  height: 5em;
+  overflow-y: auto;
+  white-space: wrap;
+}
+
+.brand {
+  border-bottom: solid 1px #00afd5;
+  font-size: 1.75rem;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+}
+.brand b, .brand small {
+  display: block;
+}
+.brand small {
+  margin-top: 0.5em;
+  font-weight: 300;
+}
+
+.palettes .lst li div {
+  line-height: 80px;
+  height: 80px;
+  width: 80px;
+  text-align: center;
+}
+
+.gridview .col > div, .gridview li > div {
+  background: rgba(238, 238, 238, 0.9333333333);
+  line-height: 40px;
+  text-align: center;
+}
+
+.sidebar .lst a {
+  padding: 0.5em;
+  padding-left: 1em;
+}
+.sidebar .lst a:hover::before {
+  left: 0;
+  border-left: solid 0.3em currentColor;
+  border-top: solid 0.2em transparent;
+  border-bottom: solid 0.2em transparent;
+}
+.sidebar .lst a.active {
+  color: #e8f1fb;
+}
+.sidebar .lst a.active::before {
+  left: 0;
+  border-left: solid 0.3em currentColor;
+  border-top: solid 0.2em transparent;
+  border-bottom: solid 0.2em transparent;
+}/*# sourceMappingURL=docs.css.map */

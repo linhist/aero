@@ -1,0 +1,141 @@
+.sidebar, .menubar, .toolbar {
+    box-shadow: 0 0 3px rgba(#000, .25), 0 0 9px rgba(#000, .15);
+    @include bx(0, 0);
+    @include fix(0, 0, $z: 1000);
+    transition: all ease .2s;
+}
+%bar-scroll {
+    height: auto;
+    overflow-y: auto;
+    scrollbar-width: none;
+    bottom: 0;
+    z-index: 999;
+}
+%bar-shad-dw {
+    box-shadow: 0 5px 15px rgba(#000, .055);
+}
+%bar-shad-rt {
+    box-shadow: 5px 0 15px rgba(#000, .055);
+}
+
+$szmenu: 0;
+$szside: 0;
+$sztool: 0;
+@each $s, $v in $themes {
+    @if $s == menubar {
+        $szmenu: alt(get($v, size), 0);
+    }
+    @else if $s == toolbar {
+        $sztool: alt(get($v, size), 0);
+    }
+    @else if $s == sidebar {
+        $szside: alt(get($v, size), 0);
+    }
+    @if $s != _ {
+        .#{$s} {
+            background: get($v, back);
+            @include kl(get($v, color), bg);
+            @include kl(get($v, text));
+            padding: get($v, gutt);
+
+            @if $s == menubar {
+                @include bd($c: get($v, bound), $d: b);
+                box-shadow: 0 5px 15px rgba(#000, .1);
+                backdrop-filter: blur(12px);
+                @include lh($szmenu, $szmenu, 100%);
+                overflow: hidden;
+                z-index: 1001;
+
+                .sb-toggle {
+                    border-radius: 0;
+                    float: left;
+                    @include bx(0, 0);
+                    @include wh($szmenu);
+
+                    &:hover {
+                        @include kl(#fff, bg, .75);
+                    }
+                }
+                .brand {
+                    @include bx(0, 0, $f: l);
+                    @include ft(calc($szmenu / 2));
+                    @include lh($szmenu, $szmenu);
+                }
+            }
+            @else if $s == sidebar {
+                @extend %bar-scroll;
+                @include bd($c: get($v, bound), $d: r);
+                box-shadow: 5px 0 15px rgba(#000, .1);
+                width: $szside;
+                transform: scaleX(0);
+                transform-origin: top left;
+
+                .side-dock {
+                    background: get($v, back);
+                    @include kl(get($v, color), bg);
+                    @include bd($c: get($v, bound), $d: t);
+                    @include bx(0, get($v, gutt));
+                    width: 100%;
+                    @include abs($l: 0, $b: 0);
+                }
+            }
+            @else if $s == toolbar {
+                @extend %bar-scroll;
+                @include bd($c: get($v, bound), $d: r);
+                box-shadow: 5px 0 15px rgba(#000, .1);
+                width: $sztool;
+
+                $iwid: $sztool - dx(alt(get($v, gutt), l), 0) * 2;
+                .ico {
+                    border-radius: 50%;
+                    @include bx(.5em 0, 0);
+                    @include lh($iwid, $iwid, $iwid);
+
+                    &:hover {
+                        @include kl(rgba(#fff, .5), bg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+body {
+    transition: all ease .2s;
+
+    &.has-mn {
+        padding-top: $szmenu;
+
+        .sidebar, .toolbar {
+            top: $szmenu;
+        }
+    }
+    &.has-sb {
+        transition: all ease .2s;
+        
+        &.show-sb {
+            padding-left: $szside;
+
+            .sidebar {
+                transform: scaleX(1);
+            }
+        }
+    }
+    &.has-tb {
+        padding-left: $sztool;
+
+        &.has-sb {
+            .toolbar + .sidebar {
+                left: $sztool;
+                top: $szmenu;
+            }
+            &.show-sb {
+                padding-left: $szside + $sztool;
+
+                .sidebar + .toolbar {
+                    left: $szside;
+                }
+            }
+        }
+    }
+}

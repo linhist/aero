@@ -1,21 +1,134 @@
-$colors: (
-    drk: #01010a,
-    lgt: #fff,
-    prime: #00c6d4,
-    focus: #0a6482,
-    valid: #1b5117,
-    error: #b21616,
-    alert: #ee911d,
+
+/// Define grid-base system for web page layout:
+/// - gutters: space for padding between each grid columns,
+/// - columns: number of columns for each screeen size,
+/// columns & gutters can have (name: value) pair for each screen break-point,
+/// if not first item will be used as default value
+$layouts: (
+    grids: (
+        mb: (
+            size: 740px,
+            gutt: 8px,
+            cols: 4,
+        ),
+        tb: (
+            size: 1080px,
+            gutt: 12px,
+            cols: 6,
+        ),
+        pc: (
+            size: 1320px,
+            gutt: 16px,
+            cols: 12,
+        ),
+        wd: (
+            gutt: 24px,
+        ),
+    ),
+    gutters: (
+        size: 8px,
+        step: 4,
+        range: 5,
+    ),
 );
+/// Define all alias name for each colors used and its color value
+/// Color palettes can be single level as (name: color) pair,
+/// or double level as (name: (tone: color)) each
+$palettes: (
+    _: (
+        back: #fff,
+        text: #000,
+        link: prime,
+        hover: alter,
+        disab: dark lt,
+        inval: error,
+        valid: valid,
+    ),
+    colors: (
+        prime: #1976d2,
+        alter: #00afd5,
+        valid: #3e9d52,
+        error: #d32f2f,
+        alert: #ee911d,
+        dark: #5c5c5c,
+    ),
+    tones: (
+        _: 0,
+        dk: -50,
+        lt: 20,
+        bl: -25,
+        wh: 10,
+    ),
+    alphas: (
+        25, 30, 50, 75, 90,
+    ),
+);
+/// Define font families used, identify each by name
+$typographs: (
+    fonts: (
+        base: unquote('"Space Grotesk", Arial, Helvetica, sans-serif'),
+        read: serif,
+        deco: unquote('cursive, fantasy'),
+        mono: monospace,
+    ),
+    weights: (
+        lt: 300,
+        md: 400,
+        se: 600,
+        bo: 700,
+        bk: 900
+    ),
+    specs: (
+        _: (
+            size: 1rem,
+            lhei: 1.25em,
+            gutt: .125em 0 .675em,
+            weit: md,
+        ),
+        h: (
+            size: 1.25rem,
+            step: .25,
+            range: 6,
+            lhei: 1.5em,
+            gutt: .125em 0 .675em,
+            weit: md,
+        ),
+        cap: (
+            color: prime,
+            size: 2.5rem,
+            step: .5,
+            range: 5,
+            lhei: 1.5em,
+            gutt: .125em 0 .675em,
+            weit: bo,
+        ),
+        tip: (
+            size: 1rem,
+            step: -.125,
+            range: 3,
+            lhei: 1.1em,
+            gutt: .15em 0 0,
+            weit: lt,
+        ),
+    ),
+);
+/// This is a dictionary values pair to detect shorthand keyword
+/// Do not change these value
 $dics: (
+    after: af,
+    before: bf,
     background: bg,
-    border: bd,
+    border: bdr bd,
+    block: blk,
+    inline: nl inl,
+    inline-block: nblk nlb,
     left: lft lf l,
     right: rgt rt r,
     top: tp t,
     bottom: bot bt b,
-    center: cen c,
+    center: cen ct c,
     middle: mid m,
+    justify: jt,
     italic: ita i,
     underline: udl ul,
     overline: odl ol,
@@ -28,70 +141,17 @@ $dics: (
     fixed: fix,
     static: stt,
     sticky: stik,
+    hidden: hid hide,
+    width: wd,
+    height: ht,
+    min-width: mw,
+    min-height: mh,
+    max-width: xw,
+    max-height: xh,
+    border-radius: rd,
 );
-$fonts: (
-    base: unquote('"Space Grotesk", Arial, Helvetica, sans-serif'),
-    read: serif,
-    mono: monospace, 
-);
-$grids: (
-    gutter: 12px,
-    maxwid: 1560px,
-    cols: 12,
-    s: 4,
-    m: 6,
-);
-$screens: (
-    s: 540px,
-    m: 720px,
-    l: 1120px,
-    x: 1320px,
-    w: 0,
-);
-$sizes: (
-    fill: 100%,
-    h1: 3.5rem,
-    h2: 3rem,
-    h3: 2.5rem,
-    h4: 2.125rem,
-    h5: 1.75rem,
-    h6: 1.25rem,
-    s1: .9rem,
-    s2: .825rem,
-    s3: .79rem,
-    s4: .75rem,
-    s5: .625rem,
-    s6: .5rem,
-    l1: 1.2em,
-    l2: 1.5em,
-    l3: 1.75em,
-    l4: 2em,
-    l5: 2.5em,
-    l6: 3em,
-    g1: 4px,
-    g2: 8px,
-    g3: 16px,
-    g4: 24px,
-    g5: 32px,
-    g6: 64px,
-    p1: 10%,
-    p2: 25%,
-    p3: 50%,
-    p4: 75%,
-    p5: 80%,
-    p6: 90%,
-);
-$weights: (
-    100: thin t,
-    200: extra-light xlgt xl,
-    300: light lgt l,
-    400: normal norm n,
-    500: medium med m,
-    600: semi-bold semi sb s,
-    700: bold b,
-    800: extra-bold xbold xb,
-    900: black blk k,
-);
+/// This is a dictionary values pair to detect data types
+/// Do not change these value
 $types: (
     list: arglist arg a lst l,
     bool: b,
@@ -102,52 +162,44 @@ $types: (
     null: u,
     number: num n,
     string: str s,
+    indexer: idx i,
 );
 
 ////// Utilities
+/// Return true if value is not null or empty string, else return false
+@function mt($v) {
+    @return $v == null or $v == '';
+}
+/// Return any value in list $v that not null or empty string, else return null
 @function alt($v...) {
     @each $a in $v {
-        @if $a != null {
+        @if not mt($a) {
             @return $a;
         }
     }
     @return null;
 }
-@function any($m, $v) {
-    @if $v == null {
+/// Return a key name existed in $m when $m is map and $v equals with
+/// that key name or value paired with that key name
+/// Special use for dictional list
+@function dic($v, $m: $dics) {
+    @if $v == null or not is(map, $m) {
         @return null;
     }
     @each $a, $b in $m {
-        @if $v == $a or has($b, $v) {
+        @if $v == $a {
             @return $a;
+        }
+        @each $c in $b {
+            @if $v == $c {
+                @return $a;
+            }
         }
     }
     @return null;
 }
-@function has($a, $v) {
-    @return $a == $v or index($a, $v) != null;
-}
-@function idx($a, $b) {
-    @if is(map, $a) {
-        $l1: map-keys($a);
-        $l2: map-values($a);
-        @return alt(idx($l1, $b), idx($l2, $b));
-    }
-    @return index($a, $b);
-}
-@function is($t: null, $v: null) {
-    $v: type-of($v);
-    $l: length($t);
-    @if $v == alt($t, 'null') {
-        @return true;
-    }
-    @each $a in $t {
-        @if any($types, $a) == $v {
-            @return true;
-        }
-    }
-    @return false;
-}
+/// Return value that route with $v value from a list or map $m
+/// $m can have multiple level so $v can be a list
 @function get($m, $v) {
     @if $v == null {
         @return null;
@@ -172,11 +224,98 @@ $types: (
     }
     @return $c;
 }
-
-////// Helpers
-@function dic($v, $a: null) {
-    @return alt(any($dics, $v), $a);
+/// Return true if value $v has any type in list $t, else return false
+@function is($t: null, $v: null) {
+    $o: type-of($v);
+    $l: length($t);
+    @if $o == alt($t, 'null') {
+        @return true;
+    }
+    @each $a in $t {
+        @if dic($a, $types) == $o {
+            @return true;
+        }
+        @if dic($a, $types) == indexer {
+            @return $o == number and mt(unit($v));
+        }
+        @if dic($a, $types) == color and $v == currentColor {
+            @return true;
+        }
+    }
+    @return false;
 }
+/// Return index of item $b in list or map $a
+@function idx($a, $b) {
+    $i: 0;
+    @if is(map, $a) {
+        @each $c, $d in $a {
+            $i: $i + 1;
+            @if $c == $b or $d == $b or $i == $b {
+                @return $i;
+            }
+        }
+    }
+    @else {
+        @each $c in $a {
+            $i: $i + 1;
+            @if $c == $b or $i == $b {
+                @return $i;
+            }
+        }
+    }
+    @return null;
+}
+/// Join list $v into a name string with separated value $s
+@function jx($s, $v...) {
+    $a: '';
+    @each $b in $v {
+        @if not mt($b) and $b != '_' {
+            $a: if(mt($a), $b, '#{$a}#{$s}#{$b}');
+        }
+    }
+    @return $a;
+}
+/// Return the next name of map or index of list from value
+@function nxt($m, $v: null) {
+    $i: idx($m, $v);
+    @return if($i == null, null, dic(get($m, $i + 1), $m));
+}
+/// Get color from palettes with key $c and tone $t
+/// if $o is specified, return color with opacity rate of $o
+@function pal($c: null, $t: null, $a: 1) {
+    @if $c == currentColor or $c == transparent {
+        @return $c;
+    }
+    @if $a == 0 {
+        @return transparent;
+    }
+
+    $a: if(is(num, $a), $a, alt(get($palettes, (alphas, $a)), 1));
+    $a: if(is(num, $a), $a, 1);
+    $a: if($a > 1 and $a < 100, calc($a / 100), if($a >= 0 and $a <= 1, $a, 1));
+    $c: alt(get($palettes, (colors, $c)), $c);
+    $t: if(is(num, $t), $t, alt(get($palettes, (tones, $t)), 0));
+    
+    @if is(color, $c) {
+        @if is(num, $t) and $t != 0 {
+            $c: if($t > 0, mix($c, #fff, $t * 1%), mix($c, #000, $t * -1%));
+        }
+    }
+    @else {
+        @return null;
+    }
+    
+    @return if($a == 1, $c, rgba($c, $a));
+}
+/// Refine percentage value
+@function pct($a, $b) {
+    @if $a == 0 or $b == 0 {
+        @return 0%;
+    }
+    @return percentage(calc(floor(calc($a/ $b)) * 100 / 10000));
+}
+/// Get value from a map or list $m with key $v,
+/// if $t is specified, check whether value is of type $t
 @function val($m, $v, $t: null) {
     @if $v == null {
         @return null;
@@ -184,32 +323,80 @@ $types: (
     @if $t != null and is($t, $v) {
         @return $v;
     }
-    @return alt(get($m, $v), null);
+
+    $v: get($m, $v);
+    @return if($t == null or is($t, $v), $v, null);
 }
-@function vany($m, $v, $t: null) {
-    @if $v == null {
-        @return null;
+@function dx($a, $d: 1) {
+    @if is(num, $d) {
+        $d: if($d > 4, 1, $d);
     }
-    @if $t != null and is($t, $v) {
-        @return $v;
+    @else {
+        $d: alt(dic($d), top);
+        $d: idx(top right bottom left, $d);
     }
-    @return alt(any($m, $v), null);
+
+    $v0: get($a, 1);
+    $v1: get($a, 2);
+    @return alt(get($a, $d), if($d % 2 == 0, $v1, $v0), $v0);
 }
-@function kolor($c: null, $t: 0, $o: 1) {
-    @if $c == null {
-        @return #000;
-    }
-    @if is(color, $c) {
-        @return $c;
-    }
-    @if is(list, $c) {
-        @return get($colors, $c);
-    }
-    @return get($colors, ($c, $t));
-}
-@function pct($a, $b) {
-    @if $a == 0 or $b == 0 {
-        @return 0%;
-    }
-    @return percentage(calc(round(($a/ $b) * 100) / 10000));
-}
+
+$forms: (
+    s: (
+        size: .875rem,
+        lhei: 1em,
+        gutt: .25em .5em,
+    ),
+    m: (
+        size: 1rem,
+        lhei: 1.25em,
+        gutt: .5em 1em,
+    ),
+    l: (
+        size: 1.25em,
+        lhei: 1.5em,
+        gutt: .75em 1.5em,
+    ),
+);
+/// Define margin space between each elements for layout
+$spaces: (
+    borders: (
+        start: 1px,
+        step: 1,
+        count: 5,
+    ),
+    gutters: (
+        start: 8px,
+        step: 4,
+        count: 5,
+    ),
+);
+$themes: (
+    _: (
+        back: #f6f7fa,// #f0ebe8,
+        bound: alter dk,
+        text: prime bl,
+        gutt: 1em 2.5em,
+    ),
+    sidebar: (
+        back: linear-gradient(90deg, pal(prime, dk), pal(prime, bl)),
+        text: prime wh,
+        size: 280px,
+        gutt: 1em
+    ),
+    menubar: (
+        back: linear-gradient(0deg, rgba(#fff, .9), pal(prime, wh, .9)),
+        text: prime,
+        size: 60px,
+    ),
+    toolbar: (
+        color: prime wh,
+        text: prime bl,
+        size: 72px,
+        gutt: 8px,
+    ),
+);
+
+/// If this value is true, content will use css variable or else only use raw value
+$variablize: false;
+$overriden: false;

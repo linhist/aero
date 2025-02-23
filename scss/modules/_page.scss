@@ -1,0 +1,25 @@
+$pgdef: get($themes, _);
+body {
+    background: get($pgdef, back);
+    @include kl(get($pgdef, color), bg);
+}
+.pg-cover {
+    @include kl(get($pgdef, color), bg);
+    background: get($pgdef, back);
+    @include kl(get($pgdef, text));
+    @include bx(0, get($pgdef, gutt));
+    @include wh(100%);
+}
+.pg-cap {
+    @include kl(get($pgdef, text));
+    @include bd($c: get($pgdef, bound), $d: b);
+    @include bx(0 0 1em, .5em 0);
+    @include ft(h 3, se);
+}
+.brand {
+    .logo {
+        &, & img, & svg {
+            @include bx;
+        }
+    }
+}
